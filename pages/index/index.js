@@ -58,6 +58,7 @@ Page({
     wx.setNavigationBarTitle({
       title: wx.getStorageSync("mallName")
     });
+    //获取banner图片
     wx.request({
       url: "https://api.it120.cc/" + app.globalData.subDomain + "/banner/list",
       data: {
@@ -77,27 +78,28 @@ Page({
         }
       }
     });
-    // wx.request({
-    //   url: "https://api.it120.cc/" +
-    //     app.globalData.subDomain +
-    //     "/shop/goods/category/all",
-    //   success: function (res) {
-    //     var categories = [{
-    //       id: 0,
-    //       name: "全部"
-    //     }];
-    //     if (res.data.code == 0) {
-    //       for (var i = 0; i < res.data.data.length; i++) {
-    //         categories.push(res.data.data[i]);
-    //       }
-    //     }
-    //     that.setData({
-    //       categories: categories,
-    //       activeCategoryId: 0
-    //     });
-    //     that.getGoodsList(0);
-    //   }
-    // });
+    //获取商品分类
+    /* wx.request({
+      url: "https://api.it120.cc/" +
+        app.globalData.subDomain +
+        "/shop/goods/category/all",
+      success: function (res) {
+        var categories = [{
+          id: 0,
+          name: "全部"
+        }];
+        if (res.data.code == 0) {
+          for (var i = 0; i < res.data.data.length; i++) {
+            categories.push(res.data.data[i]);
+          }
+        }
+        that.setData({
+          categories: categories,
+          activeCategoryId: 0
+        });
+        that.getGoodsList(0);
+      }
+    }); */
     //获取推荐商品
     wx.request({
       url: "https://api.it120.cc/" +

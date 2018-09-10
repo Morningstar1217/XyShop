@@ -1,0 +1,26 @@
+<!-- pages/column/index.wxml -->
+<view class="container">
+    <!-- 文章分类 -->
+    <view class="colTypeWrap">
+        <scroll-view scroll-x class="colTypeWrapSwiper">
+            <view class="colType" wx:for="{{columnType}}" wx:key="id" style="background-image:url('{{item.icon}}')" data-id="{{item.id}}" bind:tap="changeType">
+                <text>{{item.name}}</text>
+                <view class="wrap" data-id="{{item.id}}" wx:if="{{item.id==selected}}"></view>
+            </view>
+        </scroll-view>
+    </view>
+    <!-- 专栏显示 -->
+    <view class="columnList" wx:if="{{colList}}">
+        <navigator class="columnWrap" wx:for="{{colList}}" wx:key="id" url="/pages/column-detail/index?id={{item.id}}" open-type="navigate" hover-class="navigator-hover">
+            <view class="columnImg">
+                <image src="{{item.pic}}" mode="aspectFill" />
+            </view>
+            <view class="columnTitle">
+                <view class="title">{{item.title}}</view>
+                <!-- <view class="date">{{item.dateAdd}}</view> -->
+            </view>
+        </navigator>
+    </view>
+    <!-- 没有文章时的显示 -->
+    <view hidden="{{colList.length!=0?true:false}}" class="no-more-goods">没有更多啦</view>
+</view>

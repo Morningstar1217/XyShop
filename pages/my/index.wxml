@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="userinfo">
+    <view class="userImg-wrap">
+      <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+    </view>
+  </view>
+  <!-- 其他选项 -->
+  <view class="item-container item-container2">
+    <navigator class="my-item" url="/pages/fav/fav" hover-class="navigator-hover">
+      <image src="/images/icons/fav.png" />
+      <text>收藏</text>
+    </navigator>
+  </view>
+  <!-- 版权信息 -->
+  <view class="copyright">大白之家 V1.0</view>
+</view>

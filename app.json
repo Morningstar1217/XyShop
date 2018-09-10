@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/column/index",
+    "pages/authorize/index",
+    "pages/column-detail/index",
+    "pages/my/index",
+    "pages/goods/goods",
+    "pages/goods-details/index",
+    "pages/notice/show",
+    "pages/fav/fav"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#69C3AA",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "box-shadow": "0 0 6px 0",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "iconPath": "images/nav/home-off.png",
+        "selectedIconPath": "images/nav/home-on.png"
+      },
+      {
+        "pagePath": "pages/goods/goods",
+        "iconPath": "images/nav/goods-off.png",
+        "selectedIconPath": "images/nav/goods-on.png"
+      },
+      {
+        "pagePath": "pages/column/index",
+        "iconPath": "images/nav/column-off.png",
+        "selectedIconPath": "images/nav/column-on.png"
+      }
+    ]
+  }
+}

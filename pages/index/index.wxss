@@ -1,0 +1,339 @@
+/**index.wxss**/
+.container {
+  background-color: #F2f2f2;
+  min-height: 100%;
+}
+
+.swiper-container {
+  width: 750rpx;
+  position: relative;
+}
+
+.swiper_box {
+  width: 100%;
+  height: 350rpx;
+}
+
+swiper-item image {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 350rpx;
+}
+
+.swiper-container .dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-container .dots .dot {
+  margin: 0 8rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #fff;
+  border-radius: 50%;
+  transition: all .6s;
+  opacity: .5;
+}
+
+.swiper-container .dots .dot.active {
+  width: 14rpx;
+  opacity: 1;
+}
+
+.type-navbar {
+  white-space: nowrap;
+  height: 88rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.type-box {
+  width: 23%;
+  box-sizing: content-box;
+  font-size: 24rpx;
+  line-height: 84rpx;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.type-navbar-item {
+  border-bottom: 4rpx solid #fff;
+}
+
+.type-item-on {
+  border-bottom: 4rpx solid #69C3AA;
+}
+
+.goods-container {
+  width: 100%;
+  box-sizing: content-box;
+}
+
+.goods-box {
+  width: 100%;
+  height: 240rpx;
+  /* margin: 12rpx auto; */
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  overflow: hidden;
+  border-top: 1px solid #ddd;
+  color: #333;
+}
+
+.goods-box>.img-box {
+  position: relative;
+  width: 300rpx;
+  height: 240rpx;
+}
+
+.goods-box .img-box image {
+  margin: 20rpx 0 0 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.goods-box .goods-title {
+  width: 420rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 28rpx;
+  padding: 24rpx 0 0rpx 0;
+  margin-left: 24rpx;
+}
+
+.price-show {
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 24rpx;
+  margin-top: 70rpx;
+}
+
+.price-show>view{
+  padding: 4rpx;
+}
+
+.goods-box .goods-price {
+  width: 280rpx;
+  overflow: hidden;
+  color: #e64340;
+  margin-left: 24rpx;
+}
+
+.coupon{
+  width: 130rpx;
+  background-image: url('http://pbn1t9k4c.bkt.clouddn.com/coupon.jpg');
+  background-size: 140rpx 44rpx;
+  color: #fff;
+  text-align: center;
+
+}
+
+.no-more-goods {
+  text-align: center;
+  font-size: 24rpx;
+  padding-bottom: 48rpx;
+  color: #999;
+}
+
+.type-container {
+  width: 100%;
+  height: 88rpx;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 公告 */
+.notice {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 750rpx;
+  /* margin-top: 10rpx; */
+  background-color: #fff;
+}
+
+.notice_swiper {
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 635rpx;
+}
+
+.notice_iteml {
+  padding-left: 25rpx;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  font-size: 26rpx;
+  width: 80rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #999;
+}
+
+.notice_itemr {
+  padding-left: 10rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  color: #999;
+  width: 635rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.pos-fiexd {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* 搜索栏 */
+.search-view {
+  /* position:fixed; */
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 500;
+  width: 100%;
+  height: 70rpx;
+  /* background: #f2f2f2; */
+  display: flex;
+  flex-direction: column;
+}
+
+.search-content {
+  position: relative;
+  background: white;
+  width: 500rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* padding-top: auto;
+  padding-left: 20rpx;
+  padding-bottom: auto; */
+  /* margin: auto; */
+  height: 70rpx;
+  border-radius: 5px 5px;
+  /* margin-top: 58rpx; */
+  margin-left: 30rpx;
+}
+
+.search-icon {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  left: 12rpx;
+}
+
+.search-input {
+  width: 500rpx;
+  font-size: 28rpx;
+  background-color: #eee;
+  height: 60rpx;
+  /* text-indent: .5em; */
+  border-radius: 40rpx;
+  padding-left: 2em;
+  /* text-indent: 2em; */
+  color: #333;
+}
+
+.search-btn {
+  width: 150rpx;
+  height: 70rpx;
+  margin-right: 0rpx;
+  background-color: #69C3AA;
+  font-size: 28rpx;
+  align-items: center;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  color: #fff;
+  border: none;
+  position: relative;
+}
+
+/* 推荐栏 */
+.goodsTitle {
+  text-align: center;
+  height: 70rpx;
+  width: 100%;
+  background: #fff;
+  text-indent: .7em;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/recommend2.png");
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: 290rpx;
+  margin-top: 4rpx;
+}
+
+/* 推荐斜条 */
+.recommendStatus {
+  position: absolute;
+  width: 200rpx;
+  height: 40rpx;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background: #e4393c;
+  top: 20rpx;
+  left: -60rpx;
+  transform: rotate(-45deg);
+}
+
+/* 菜单栏 */
+.menu {
+  width: 100%;
+  height: 130rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #fff;
+  margin-top: 4rpx;
+}
+
+.menuOp {
+  width: 25%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.menuImg {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.navigator-hover {
+  background: #fff;
+}

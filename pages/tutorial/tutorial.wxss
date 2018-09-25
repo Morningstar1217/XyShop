@@ -1,0 +1,6 @@
+/* pages/tutorial/Tutorial.wxss */
+@import "../template/template.wxss";
+
+.tutorialImg {
+  width: 100%;
+}

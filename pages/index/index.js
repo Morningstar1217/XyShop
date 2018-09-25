@@ -1,198 +1,204 @@
-//index.js
-//获取应用实例
 var app = getApp();
+
 Page({
+  /**
+   * 页面的初始数据
+   */
   data: {
-    indicatorDots: true,
-    autoplay: true,
-    interval: 3000,
-    duration: 1000,
-    loadingHidden: false, // loading
-    userInfo: {},
-    swiperCurrent: 0,
-    selectCurrent: 0,
-    categories: [],
-    activeCategoryId: 0,
-    goods: [],
-    recommendStatusGoods: [],
-    scrollTop: "0",
-    loadingMoreHidden: true,
-    hasNoCoupons: true,
-    coupons: [],
-    searchInput: ""
+    menu: [
+      {
+        id: 0,
+        name: "全部"
+      },
+      {
+        id: 1,
+        name: "女装"
+      },
+      {
+        id: 2,
+        name: "男装"
+      },
+      {
+        id: 3,
+        name: "美食"
+      },
+      {
+        id: 4,
+        name: "居家"
+      },
+      {
+        id: 5,
+        name: "美妆"
+      },
+      {
+        id: 7,
+        name: "鞋包"
+      },
+      {
+        id: 8,
+        name: "女装"
+      },
+      {
+        id: 9,
+        name: "男装"
+      },
+      {
+        id: 10,
+        name: "美食"
+      },
+      {
+        id: 11,
+        name: "居家"
+      },
+      {
+        id: 12,
+        name: "美妆"
+      },
+      {
+        id: 13,
+        name: "鞋包"
+      }
+    ],
+    count: 0, //选择分类
+    host: app.globalData.host, //主网站地址
+    getJdList: app.globalData.getJdList, //获取京东外链地址
+    getJdCoupon: app.globalData.getJdCoupon, //京东优惠券转链
+    menuFlag: true, //是否打开全部分类
+    sureBuy: false, //遮罩是否打开
+    currentPage: 1, //请求的当前页面页码
+    hotSellCom: [], //热销商品
+    featuredComList: [], //京东精选
+    titleMsg: "", //点击复制优惠券提示文字
+    favPage: true //是否是管理收藏页面
   },
 
-  tabClick: function (e) {
-    this.setData({
-      activeCategoryId: e.currentTarget.id
-    });
-    this.getGoodsList(this.data.activeCategoryId);
-  },
-  //事件处理函数
-  swiperchange: function (e) {
-    this.setData({
-      swiperCurrent: e.detail.current
-    });
-  },
-  tapBanner: function (e) {
-    if (e.currentTarget.dataset.id != 0) {
-      wx.navigateTo({
-        url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
-      });
-    }
-  },
-  bindTypeTap: function (e) {
-    this.setData({
-      selectCurrent: e.index
-    });
-  },
-  scroll: function (e) {
-    var that = this,
-      scrollTop = that.data.scrollTop;
-    that.setData({
-      scrollTop: e.detail.scrollTop
-    });
-  },
-  onLoad: function () {
-    var that = this;
-    wx.setNavigationBarTitle({
-      title: wx.getStorageSync("mallName")
-    });
-    //获取banner图片
-    wx.request({
-      url: "https://api.it120.cc/" + app.globalData.subDomain + "/banner/list",
-      data: {
-        key: "mallName"
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    this.getJdList();
+    wx.getStorage({
+      key: "favs",
+      success: function(res) {
+        app.globalData.favs = res.data;
+        console.log(app.globalData.favs);
       },
-      success: function (res) {
-        if (res.data.code == 404) {
-          wx.showModal({
-            title: "提示",
-            content: "请在后台添加 banner 轮播图片",
-            showCancel: false
-          });
-        } else {
-          that.setData({
-            banners: res.data.data
-          });
-        }
+      fail: function() {
+        wx.setStorage({
+          key: "favs",
+          data: app.globalData.favs
+        });
       }
     });
-    //获取商品分类
-    /* wx.request({
-      url: "https://api.it120.cc/" +
-        app.globalData.subDomain +
-        "/shop/goods/category/all",
-      success: function (res) {
-        var categories = [{
-          id: 0,
-          name: "全部"
-        }];
-        if (res.data.code == 0) {
-          for (var i = 0; i < res.data.data.length; i++) {
-            categories.push(res.data.data[i]);
-          }
-        }
-        that.setData({
-          categories: categories,
-          activeCategoryId: 0
-        });
-        that.getGoodsList(0);
-      }
-    }); */
-    //获取推荐商品
+    // wx.clearStorage()
+  },
+  /* 打开搜索页面 */
+  toSearch: function() {
+    wx.navigateTo({
+      url: "/pages/search/search"
+    });
+  },
+  /* 选择分类 */
+  changeMenu: function(e) {
+    this.setData({
+      count: e.target.id
+    });
+  },
+  /* 打开全部分类 */
+  openMenu: function() {
+    this.setData({
+      menuFlag: !this.data.menuFlag
+    });
+  },
+  /* 复制淘口令 */
+  goBuy: function(e) {
+    const that = this;
+    const sku = e.currentTarget.id;
+    const couponUrl = e.currentTarget.dataset.url;
+    const url = this.data.host + this.data.getJdCoupon;
     wx.request({
-      url: "https://api.it120.cc/" +
-        app.globalData.subDomain +
-        "/shop/goods/list",
+      url: url,
+      data: {
+        sku: sku,
+        url: couponUrl
+      },
       header: {
         "Content-Type": "application/json"
       },
-      data: {
-        recommendStatus: 1
-      },
-      success: function (res) {
-        that.setData({
-          recommendStatusGoods: res.data.data
-        });
-      }
-    });
-    that.getNotice();
-  },
-  getNotice: function () {
-    var that = this;
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/notice/list',
-      data: {
-        pageSize: 5
-      },
-      success: function (res) {
-        if (res.data.code == 0) {
+      success: function(res) {
+        if (res.data.data) {
+          wx.setClipboardData({
+            data: res.data.data,
+            success: function(res) {
+              wx.hideToast();
+              that.setData({
+                sureBuy: true,
+                titleMsg: "已复制淘口令，打开手机淘宝领券下单即可"
+              });
+            }
+          });
+        } else {
           that.setData({
-            noticeList: res.data.data
+            sureBuy: true,
+            titleMsg: "该商品优惠券已被抢光~再看看别的商品吧"
           });
         }
       }
-    })
-  },
-  getGoodsList: function (categoryId) {
-    if (categoryId == 0) {
-      categoryId = "";
-    }
-    var that = this;
-    wx.request({
-      url: "https://api.it120.cc/" + app.globalData.subDomain + "/shop/goods/list",
-      data: {
-        categoryId: categoryId,
-        nameLike: that.data.searchInput
-      },
-      success: function (res) {
-        that.setData({
-          goods: [],
-          loadingMoreHidden: true
-        });
-        var goods = [];
-        if (res.data.code != 0 || res.data.data.length == 0) {
-          that.setData({
-            loadingMoreHidden: false
-          });
-          return;
-        }
-        for (var i = 0; i < res.data.data.length; i++) {
-          goods.push(res.data.data[i]);
-        }
-        that.setData({
-          goods: goods
-        });
-      }
     });
   },
-  onShareAppMessage: function () {
-    return {
-      title: wx.getStorageSync('mallName') + ' - ' + app.globalData.shareProfile,
-      path: "/pages/index/index",
-      imageUrl: '',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    };
+  /* 关闭遮罩 */
+  closeWrap: function() {
+    this.setData({
+      sureBuy: false
+    });
   },
-  tobuy: function (e) {
-    const code = e.currentTarget.dataset.characteristic
+  //京东外链抓取
+  getJdList: function(param) {
+    const Jdurl = this.data.host + this.data.getJdList;
     const that = this;
-    wx.setClipboardData({
-      data: code,
-      success: function (res) {
-        wx.hideToast();
-        wx.showModal({
-          title: "大白提示",
-          content: '淘口令复制成功,请打开淘宝购买\r\n 购买后记得到大白之家登记哦~',
-          showCancel: false
+    wx.request({
+      url: Jdurl,
+      data: {
+        page: that.data.currentPage
+      },
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: function(res) {
+        const arr1 = that.data.featuredComList;
+        const arr2 = res.data.data.list;
+        arr1.push.apply(arr1, arr2);
+        that.setData({
+          featuredComList: arr1,
+          currentPage: that.data.currentPage + 1
         });
       }
     });
   },
+  //获取更多京东外链
+  getMoreJdList: function() {
+    this.getJdList();
+  },
+  //添加/取消收藏
+  getCol: function(e) {
+    const id = e.currentTarget.id;
+    const favs = app.globalData.favs;
+    if (favs.indexOf(e.currentTarget.id) == -1) {
+      favs.push(e.currentTarget.id);
+      wx.showToast({
+        title: "收藏成功",
+        icon: "success"
+      });
+    } else {
+      favs.splice(favs.indexOf(e.currentTarget.id), 1);
+      wx.showToast({
+        title: "取消成功",
+        icon: "success"
+      });
+    }
+    wx.setStorage({
+      key: "favs",
+      data: favs
+    });
+  }
 });

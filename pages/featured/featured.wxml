@@ -1,0 +1,36 @@
+<!-- pages/featured/featured.wxml -->
+<import src="../template/template.wxml"></import>
+<view class="container">
+  <!-- 顶部推荐 -->
+  <view class="headerAd">
+    <navigator url="../99sale/index">
+      <image class="today" src="/images/left-small.png" />
+    </navigator>
+    <navigator url="../timeLimit/timeLimit">
+      <image class="timeLimit" src="/images/right-2.png" />
+    </navigator>
+  </view>
+  <!-- 热销榜单 -->
+  <view class="wrap3">
+    <view class="hotSellTitle">
+      <image src="/images/hotsell.png" class="hotSellImg" />
+      <view class="sellTitle">热销榜单</view>
+    </view>
+    <scroll-view scroll-x="true" class="hotSellComList">
+      <block wx:for="{{hotSellCom}}" wx:key="id">
+        <template is="hotSellCom" data="{{item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 精选商品 -->
+  <view class="wrap4">
+    <view class="featuredTitle">精选商品</view>
+    <block wx:for="{{featuredComList}}" wx:key="id">
+      <template is="featuredComList" data="{{item}}"></template>
+    </block>
+  </view>
+  <!-- 底部导航栏 -->
+  <template is="tabbar"></template>
+  <!-- 大遮罩 -->
+  <template is="bigWrap" data="{{sureBuy}}"></template>
+</view>

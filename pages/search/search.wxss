@@ -1,0 +1,117 @@
+/* pages/search/search.wxss */
+@import "../template/template.wxss";
+/* *********************顶部搜索区*********************** */
+.header {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.search {
+  width: 600rpx;
+  height: 58rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/search.png");
+  background-size: 40rpx;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: -50rpx;
+  text-align: left;
+  padding-left: 80rpx;
+  vertical-align: middle;
+}
+
+.cancel {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+}
+/*************************历史纪录展示区*******************************  */
+.historyShow {
+  width: 100%;
+  margin-top: 10rpx;
+  background: #fff;
+}
+
+.history,
+.showAllHistory {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80rpx;
+  padding: 0 20rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.history view {
+  display: inline-block;
+}
+
+.timeIcon {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+}
+
+.historyName {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.delete {
+  width: 100rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: right;
+  text-align: center;
+}
+
+.showAllHistory {
+  text-align: center;
+  font-size: 28rpx;
+  color: #aaa;
+}
+/* ***********************热搜*********************************** */
+
+.hotSearch {
+  margin-top: 10rpx;
+  width: 100%;
+  background: #fff;
+}
+.hotSellTitle {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 34 rpx;
+}
+
+.hotSellImg {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sellTitle {
+  display: inline-block;
+  margin-left: 10rpx;
+  font-size: 28rpx;
+}
+
+.hotSearchWrap {
+  width: 100%;
+  font-size: 28rpx;
+  border-top: 1px solid #f2f2f2;
+}
+
+.hotsearch {
+  display: inline-block;
+  margin-left: 60rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 30rpx 0;
+}
+

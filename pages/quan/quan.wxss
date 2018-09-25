@@ -1,0 +1,282 @@
+/* pages/quan/quan.wxss */
+@import "/pages/template/template.wxss";
+/* 顶部区域 */
+.header {
+  position: relative;
+  width: 100%;
+  height: 390rpx;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/quanBg.png");
+  background-size: 100%;
+}
+
+.searchWrap {
+  position: absolute;
+  top: 250rpx;
+  left: 50%;
+  margin-left: -325rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 650rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+
+.search {
+  box-sizing: border-box;
+  background: #fff;
+  width: 530rpx;
+  height: 80rpx;
+  padding-left: 80rpx;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/search.png");
+  background-size: 40rpx;
+  background-position: -50rpx;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  font-size: 28rpx;
+}
+
+.searchBtn {
+  display: inline-block;
+  padding: 0;
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  background-image: linear-gradient(#ffb142, #ffb142),
+    linear-gradient(#e43333, #e43333);
+  background-blend-mode: normal, normal;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  outline: none;
+}
+
+/* 热门标签 */
+.tagsWrap {
+  width: 100%;
+  background: #fff;
+}
+
+.tagsTitle {
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 400;
+}
+
+.changeTags {
+  width: 130rpx;
+  height: 60rpx;
+}
+
+.flash,
+.eye {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 15rpx;
+  vertical-align: top;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20rpx 20rpx;
+  font-size: 28rpx;
+}
+
+.tag {
+  padding: 0 20rpx;
+  margin: 20rpx 0 0 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #f2f2f2;
+  border-radius: 25rpx;
+}
+
+/* 教程部分 */
+.tutorial,
+.featuredWrap {
+  width: 100%;
+  margin: 20rpx 0 0;
+  background: #fff;
+  height: auto;
+}
+
+.toggle {
+  box-sizing: border-box;
+  margin-top: 5rpx;
+  width: 130rpx;
+  height: 50rpx;
+  padding: 0 15rpx;
+  line-height: 50rpx;
+  border: 1px solid #eb3f2b;
+  border-radius: 25rpx;
+  color: #eb3f2b;
+}
+
+.hide {
+  color: #333;
+  border-color: #333;
+}
+
+.eye {
+  margin-top: 10rpx;
+}
+
+.tutorialImg {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #f2f2f2;
+}
+
+.quanHeader {
+  width: 100%;
+  height: 30rpx;
+}
+
+.tutorialS {
+  width: 512rpx;
+  height: 485rpx;
+  margin: 0 auto;
+}
+
+.tutorialSi {
+  width: 512rpx;
+  height: 485rpx;
+  text-align: center;
+}
+
+.swiper-image {
+  display: inline-block;
+  width: 512rpx;
+  height: 485rpx;
+}
+
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 10;
+}
+
+.leftArrow {
+  left: 50rpx;
+}
+
+.rightArrow {
+  right: 50rpx;
+}
+
+/* 热门推荐 */
+.featuredWrap {
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+}
+
+.featuredS {
+  width: 100%;
+  height: 320rpx;
+  overflow: hidden;
+}
+
+.featuredSi {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 320rpx;
+}
+
+.featuredComs {
+  display: flex;
+  flex-direction: column;
+  width: 230rpx;
+  height: 290rpx;
+  font-size: 24rpx;
+  margin: 0 10rpx;
+  text-align: center;
+}
+
+.featuredImg {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.featuredImg image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.number {
+  position: absolute;
+  bottom: 30rpx;
+  left: 0;
+  width: 130rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0px 3px 7.4px 0.6px rgba(121, 121, 121, 0.2);
+  border-radius: 0px 12.5px 12.5px 0px;
+  font-size: 20rpx;
+}
+
+.featuredQuan {
+  box-sizing: border-box;
+  padding: 0 10rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 55rpx;
+  line-height: 55rpx;
+  background: #f2f2f2;
+}
+
+.quanHou {
+  font-size: 20rpx;
+  color: #eb3f2b;
+}
+
+.price {
+  font-size: 28rpx;
+  color: #eb3f2b;
+  vertical-align: bottom;
+}
+
+.quan {
+  width: 100rpx;
+  color: #fff;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/couponBg.png");
+  background-size: 100rpx 35rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 22rpx;
+}

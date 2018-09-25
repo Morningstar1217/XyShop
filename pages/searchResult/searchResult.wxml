@@ -1,0 +1,17 @@
+<!-- pages/searchResult/searchResult.wxml -->
+<import src="../template/template.wxml"></import>
+<view class="container">
+  <!-- 顶部搜索区 -->
+  <view class="header">
+    <input type="text" class="search" placeholder="{{searchResult}}" confirm-type="search" bindconfirm="search" bindinput="remSearch" />
+    <text class="cancel" bind:tap="returnIndex">取消</text>
+  </view>
+  <!-- 商品搜索结果区 -->
+  <view class="wrap4">
+    <block wx:for="{{featuredComList}}" wx:key="id">
+      <template is="featuredComList" data="{{item}}"></template>
+    </block>
+  </view>
+  <!-- 底部导航栏 -->
+  <template is="tabbar"></template>
+</view>

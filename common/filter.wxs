@@ -1,0 +1,9 @@
+var filter = {
+  toInt: function(value) {
+    return Math.ceil(value);
+  }
+};
+
+module.exports = {
+  toInt: filter.toInt
+};

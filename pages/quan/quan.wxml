@@ -1,0 +1,323 @@
+<import src="/pages/template/template.wxml"></import>
+<view class="container">
+  <!-- 顶部banner图 -->
+  <view class="header">
+    <view class="searchWrap">
+      <input class="search" type="text" placeholder="输入关键词或商品链接" />
+      <view class="searchBtn">搜索</view>
+    </view>
+  </view>
+  <!-- 热门标签 -->
+  <view class="tagsWrap">
+    <view class="tagsTitle">
+      <view class="title">热门标签</view>
+      <view class="changeTags">
+        <image class="flash" src="/images/flash.png" />
+        换一批
+      </view>
+    </view>
+    <view class="tags">
+      <view class="tag">面膜</view>
+      <view class="tag">面膜面膜</view>
+      <view class="tag">面膜面</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜面膜</view>
+      <view class="tag">面膜面</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜</view>
+      <view class="tag">面膜面膜</view>
+      <view class="tag">面膜</view>
+    </view>
+  </view>
+  <!-- 查券教程 -->
+  <view class="tutorial">
+    <view class="tagsTitle">
+      <view class="title">APP上看到心仪商品如何查券？</view>
+      <view class="toggle {{tutorialFlag?'':'hide'}}}" bind:tap="toggle">
+        {{tutorialFlag?'显示':'隐藏'}}
+        <image class="eye" src="{{tutorialFlag?'/images/eye.png':'/images/eyeC.png'}}" />
+      </view>
+    </view>
+    <view class="tutorialImg" wx:if="{{tutorialFlag}}">
+      <image class="quanHeader" src="/images/quanHeader.png" mode="aspectFit" />
+      <image class="leftArrow" src="/images/leftArrow.png" bind:tap="toLeft"></image>
+      <swiper indicator-dots="true" interval="5000" duration="500" indicator-active-color="#eb3f2b" current="{{current}}" class="tutorialS" bind:change="touchChange">
+        <block wx:for="{{stepImgs}}" wx:key="id">
+          <swiper-item class="tutorialSi">
+            <image class="swiper-image" src="{{item}}" mode="aspectFit" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <image class="rightArrow" src="/images/rightArrow.png" bind:tap="toRight"></image>
+    </view>
+  </view>
+  <!-- 热门推荐 -->
+  <view class="featuredWrap">
+    <view class="tagsTitle">
+      <view class="title">热门推荐</view>
+    </view>
+    <swiper indicator-dots="true" duration="500" indicator-active-color="#eb3f2b" class="featuredS">
+      <swiper-item class="featuredSi">
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="featuredSi">
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="featuredSi">
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 每日热搜 -->
+  <view class="featuredWrap">
+    <view class="tagsTitle">
+      <view class="title">每日热搜</view>
+    </view>
+    <swiper indicator-dots="true" duration="500" indicator-active-color="#eb3f2b" class="featuredS">
+      <swiper-item class="featuredSi">
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs" bind:tap="goBuy">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="featuredSi">
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="featuredSi">
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+        <view class="featuredComs">
+          <view class="featuredImg">
+            <image src="/images/com-1.png" />
+            <view class="number">月销12345</view>
+          </view>
+          <view class="featuredQuan">
+            <view>
+              <text class="quanHou">券后</text>
+              <text class="price">39.9</text>
+            </view>
+            <view class="quan">100元券</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 底部tabbar -->
+  <template is="tabbar"></template>
+  <!-- 大遮罩 -->
+  <template is="bigWrap" data="{{sureBuy}}"></template>
+</view>

@@ -1,0 +1,293 @@
+.wrap2,
+.showWrap,
+.wrap3,
+.wrap4 {
+  /* position: relative; */
+  margin-top: 10rpx;
+  background: #fff;
+  width: 100%;
+}
+
+/* ***************************热销榜单********************* */
+.hotSellTitle,
+.featuredTitle {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34 rpx;
+}
+
+.hotSellImg {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sellTitle {
+  display: inline-block;
+  margin-left: 10rpx;
+}
+
+.hotSellComList {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hotSellCom {
+  display: inline-block;
+  width: 250rpx;
+  height: 350rpx;
+  padding: 10rpx;
+  overflow: hidden;
+}
+
+.hotSellComImg {
+  width: 250rpx;
+  height: 250rpx;
+  overflow: hidden;
+  border: 1px solid #eee;
+  border-radius: 10rpx;
+}
+
+.hotSellComImg > image {
+  width: 250rpx;
+  height: 250rpx;
+}
+
+.hotSellComName,
+.hotSellComPrice {
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.hotSellComPrice {
+  color: #d34353;
+}
+
+/* ************************精选商品*********************** */
+.wrap4Change {
+  padding-bottom: 80rpx;
+}
+
+.featuredWrap {
+  width: 100%;
+  height: 1500rpx;
+}
+
+.featuredCom {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 20rpx 20rpx;
+  border-top: 1px solid #eee;
+}
+
+.consoleCom {
+  position: absolute;
+  top: 30rpx;
+  left: 20rpx;
+  width: 90rpx;
+  height: 160rpx;
+  line-height: 160rpx;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.consoleCom icon {
+  width: 100%;
+  height: 100%;
+}
+
+.featuredImg {
+  position: relative;
+  width: 300rpx;
+  position: relative;
+  transition: 0.2s;
+  margin-top: 10rpx;
+}
+
+.featuredImg > .comImg {
+  width: 250rpx;
+  height: 250rpx;
+}
+
+.featuredImg > .integral {
+  position: absolute;
+  right: 12rpx;
+  top: 0;
+  width: 34rpx;
+  height: 43rpx;
+}
+
+.score {
+  position: absolute;
+  top: 12rpx;
+  right: 22rpx;
+  font-size: 18rpx;
+  color: #fff;
+}
+
+.featuredComDetail {
+  width: 400rpx;
+  margin-left: 20rpx;
+  transition: 0.2s;
+}
+
+.consoleIng {
+  transform: translateX(90rpx);
+}
+
+.featuredName {
+  height: 80rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  font-size: 26rpx;
+  margin-bottom: 30rpx;
+  margin-top: 10rpx;
+}
+
+.goHongWrap {
+  font-size: 24rpx;
+  color: #818181;
+}
+
+.goHongWrap view {
+  display: inline-block;
+}
+
+.hadBuy {
+  margin-left: 22%;
+}
+
+.priceWrap {
+  margin-top: 10rpx;
+}
+
+.priceShow {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.priceShow view {
+  display: inline-block;
+}
+
+.priceNow {
+  font-size: 26rpx;
+  color: #d34353;
+}
+
+.priceAgo {
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  text-decoration: line-through;
+  color: #666;
+}
+
+.coupon {
+  width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 20rpx;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/couponBg.png");
+  background-repeat: no-repeat;
+  background-size: 100rpx 40rpx;
+}
+
+.favPage {
+  position: absolute;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  overflow: hidden;
+}
+
+/* ****************************底部自定义导航***************************** */
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: #fff;
+  z-index: 999;
+  box-shadow: 0 -2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.couponBar {
+  width: 70%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  color: #d34353;
+  text-align: center;
+  background: #f7f7f7;
+}
+
+.collection {
+  width: 30%;
+  height: 100rpx;
+  background-image: linear-gradient(to right, #ea7e64, #d34353);
+}
+
+.collectionImg {
+  width: 58rpx;
+  height: 50rpx;
+  margin: 30rpx 0 0 84rpx;
+}
+
+/* ************************全屏遮罩****************************** */
+.bigWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.successMsg {
+  position: fixed;
+  width: 540rpx;
+  height: 320rpx;
+  top: 50%;
+  left: 50%;
+  margin-top: -270rpx;
+  margin-left: -270rpx;
+  background: #ea7e64;
+  border-radius: 40rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+}
+
+.successTItle {
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  background-image: linear-gradient(to right, #d34353, #ea7e64);
+}
+
+.successContent {
+  box-sizing: border-box;
+  width: 100%;
+  height: 160rpx;
+  line-height: 95rpx;
+  padding: 30rpx 20rpx;
+  background: #fff;
+  font-size: 26rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,7 @@
+<!-- pages/tutorial/Tutorial.wxml -->
+<import src="../template/template.wxml"></import>
+<view class="container">
+  <image src="http://pbn1t9k4c.bkt.clouddn.com/tutorial.jpg" class="tutorialImg" mode="widthFix" />
+  <!-- 底部导航栏 -->
+  <template is="tabbar"></template>
+</view>

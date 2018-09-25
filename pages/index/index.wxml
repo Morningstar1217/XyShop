@@ -1,56 +1,139 @@
-<!-- index.wxml -->
-<!-- 1px = 750/320 = 2.34rpx; -->
+<import src="../template/template.wxml" />
 <view class="container">
-  <!-- 顶部banner -->
-  <view class="swiper-container">
-    <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='true' bindchange="swiperchange">
-      <block wx:for="{{banners}}" wx:key="id">
-        <swiper-item>
-          <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}_m" class="slide-image" width="750rpx" mode="aspectFill" />
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class="dots">
-      <block wx:for="{{banners}}" wx:key="unique">
-        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-      </block>
+  <!-- 顶部查券及搜索 -->
+  <view class="header">
+    <navigator class="getCoupon" url="/pages/quan/quan">
+      <image src="/images/coupon.png" class="couponImg" />
+    </navigator>
+    <input type="text" class="search" placeholder="输入商品名称查找" bind:tap="toSearch" />
+  </view>
+  <!-- 轮播图区域 -->
+  <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" class="banner" indicator-color="#fff" indicator-active-color="#d34353">
+    <!-- <block wx:for="{{imgUrls}}"> -->
+    <swiper-item>
+      <image class="swiper-image" src="/images/banner1.png" mode="aspectFit" />
+    </swiper-item>
+    <swiper-item>
+      <image class="swiper-image" src="/images/banner1.png" mode="aspectFit" />
+    </swiper-item>
+    <swiper-item>
+      <image class="swiper-image" src="/images/banner1.png" mode="aspectFit" />
+    </swiper-item>
+    <!-- </block> -->
+  </swiper>
+  <!-- 分类 -->
+  <view class="wrap2">
+    <view class="menuWrap">
+      <scroll-view scroll-x="true" class="menuList" wx:if="{{menuFlag}}">
+        <block wx:for="{{menu}}" wx:key="id">
+          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu">
+            {{item.name}}
+          </view>
+        </block>
+      </scroll-view>
+      <view class="menuListOpen" wx:else>
+        <block wx:for="{{menu}}" wx:key="id">
+          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu">
+            {{item.name}}
+          </view>
+        </block>
+      </view>
+      <view class="showAll {{menuFlag?'':'showAlled'}}" bind:tap="openMenu"></view>
     </view>
   </view>
-  <!-- 公告 -->
-  <!-- <view wx:if="{{noticeList}}" class="notice">
-    <view class="notice_iteml">公告：</view>
-    <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical="true" autoplay="true" circular="true" interval="3000">
-      <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}" open-type="navigate">
-        <swiper-item>
-          <view class="notice_itemr">{{item.title}}</view>
-        </swiper-item>
+  <!-- 展示区 -->
+  <view class="showWrap" wx:if="{{count==0}}">
+    <view class="allMenu">
+      <!-- 新手教程 -->
+      <navigator class="studyTutorial" url="../tutorial/tutorial">
+        <image src="/images/study.png" class="studyTutorialImg" mode="aspectFit" />
       </navigator>
-    </swiper>
-  </view> -->
-  <view class="goodsTitle">大白推荐</view>
-  <!-- 推荐商品列表 -->
-  <view class="goods-container">
-    <view class="goods-box" wx:for-items="{{recommendStatusGoods}}" wx:key="{{index}}" bindtap="tobuy" data-id="{{item.id}}" data-characteristic="{{item.characteristic}}">
-      <view class="img-box">
-        <image src="{{item.pic}}_m" class="image" mode="aspectFill" lazy-load="true" />
-        <!-- 推荐条 -->
-        <view class="recommendStatus">推荐</view>
-      </view>
-      <view class="priceWrap">
-        <view class="goods-title">{{item.name}}</view>
-        <view class="price-show">
-          <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through;'>
-            淘宝价¥ {{item.originalPrice}}
-          </view>
-          <view class="hadBuy" style="color:#999">{{item.numberOrders}}已购</view>
-          <view class="goods-price">¥ {{item.minPrice}}</view>
-          <view class="coupon">
-            {{filter.getPriceFormat(item.originalPrice - item.minPrice)}}元券
-          </view>
-        </view>
+      <navigator class="showLeft" url="/pages/99sale/index">
+        <image src="/images/left.png" />
+      </navigator>
+      <view class="showRight">
+        <navigator url="/pages/featured/featured">
+          <image src="/images/right-1.png" />
+        </navigator>
+        <navigator url="../timeLimit/timeLimit">
+          <image src="/images/right-2.png" class="showRightImg2" />
+        </navigator>
       </view>
     </view>
+    <!-- <view wx:else class="littleMenuWrap">
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+      <view class="littleMenu">
+        <image class="littleImg" src="/images/wmClothing.png" />
+        <view class="littleName">女装</view>
+      </view>
+    </view> -->
   </view>
-  <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">没有更多啦</view>
+  <!-- 热销榜单 -->
+  <view class="wrap3">
+    <view class="hotSellTitle">
+      <image src="/images/hotsell.png" class="hotSellImg" />
+      <view class="sellTitle">热销榜单</view>
+    </view>
+    <scroll-view scroll-x="true" class="hotSellComList">
+      <block wx:for="{{hotSellCom}}" wx:key="id">
+        <template is="hotSellCom" data="{{item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 精选商品 -->
+  <view class="wrap4">
+    <view class="featuredTitle">京东精选</view>
+    <scroll-view scroll-y="true" class="featuredWrap" bind:scrolltolower="getMoreJdList">
+      <block wx:for="{{featuredComList}}" wx:key="id">
+        <template is="featuredComList" data="{{item,favPage}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 底部导航栏 -->
+  <template is="tabbar"></template>
+  <!-- 大遮罩 -->
+  <template is="bigWrap" data="{{sureBuy,titleMsg}}"></template>
 </view>
-<wxs module="filter" src="../../utils/filter.wxs"></wxs>

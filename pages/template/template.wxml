@@ -1,0 +1,58 @@
+<!-- 精选商品展示模板 -->
+<template name="featuredComList">
+  <view class="featuredCom" id="{{item.sku}}" bind:tap="goBuy" data-url="{{item.couponLink}}">
+    <view class="consoleCom" wx:if="{{consolePlat}}">
+      <icon wx:if="{{item.selected}}" type="success" color="red" catch:tap="change" data-index="{{index}}" />
+      <icon wx:else type="circle" catch:tap="change" data-index="{{index}}" />
+    </view>
+    <view class="featuredImg {{consolePlat?'consoleIng':''}}">
+      <image src="{{item.pic}}" class="comImg" />
+      <image src="/images/integral.png" class="integral" />
+      <text class="score">{{item.score}}</text>
+    </view>
+    <view class="featuredComDetail {{consolePlat?'consoleIng':''}}">
+      <view class="featuredName">{{item.title}}</view>
+      <view class="goHongWrap">
+        <view class="goHong">记得去“大白HONG登记哦~”</view>
+      </view>
+      <view class="priceShow">
+        <view class="coupon">{{filter.toInt(item.market_price-item.price)}}元券</view>
+        <view class="priceWrap">
+          <view class="priceNow">￥{{item.price}}</view>
+          <view class="priceAgo">￥{{item.market_price}}</view>
+        </view>
+      </view>
+    </view>
+    <image src="/images/favpage1.png" wx:if="{{favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" />
+  </view>
+</template>
+<!-- 热销榜单 -->
+<template name="hotSellCom">
+  <view class="hotSellCom" bind:tap="goBuy">
+    <view class="hotSellComImg">
+      <image src="{{item.imgUrl}}" />
+    </view>
+    <view class="hotSellComName">{{item.name}}</view>
+    <view class="hotSellComPrice">￥{{item.priceNow}}</view>
+  </view>
+</template>
+<!-- 底部导航栏 -->
+<template name="tabbar">
+  <view class="tabbar">
+    <navigator url="../index/index" class="couponBar">大额优惠券</navigator>
+    <navigator class="collection" url="/pages/fav/fav">
+      <image src="/images/fav.png" class="collectionImg" />
+    </navigator>
+  </view>
+</template>
+<!-- 大遮罩 -->
+<template name="bigWrap">
+  <view class="bigWrap" wx:if="{{sureBuy}}">
+    <view class="successMsg">
+      <view class="successTItle">复制成功</view>
+      <view class="successContent">{{titleMsg}}</view>
+      <view class="successTItle" bind:tap="closeWrap">确定</view>
+    </view>
+  </view>
+</template>
+<wxs src="../../common/filter.wxs" module="filter"></wxs>

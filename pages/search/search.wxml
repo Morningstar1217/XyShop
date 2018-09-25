@@ -1,0 +1,34 @@
+<!-- pages/search/search.wxml -->
+<import src="../template/template.wxml"></import>
+<view class="container">
+  <!-- 顶部搜索区 -->
+  <view class="header">
+    <input type="text" class="search" placeholder="输入商品名称查找" confirm-type="search" bindconfirm="search" bindinput="remSearch" focus="true" />
+    <text class="cancel" bind:tap="returnIndex">取消</text>
+  </view>
+  <!-- 历史纪录展示区 -->
+  <view class="historyShow">
+    <block wx:for="{{history}}" wx:key="id">
+      <view class="history">
+        <image class="timeIcon" src="/images/timeIcon.png" />
+        <view class="historyName">{{item}}</view>
+        <view class="delete" bind:tap="delete" data-index="{{index}}">x</view>
+      </view>
+    </block>
+    <view class="showAllHistory">{{history!=0?'全部搜索记录':'当前记录为空'}}</view>
+  </view>
+  <!-- 热搜 -->
+  <view class="hotSearch">
+    <view class="hotSellTitle">
+      <image src="/images/hotsell.png" class="hotSellImg" />
+      <view class="sellTitle">热搜</view>
+    </view>
+    <view class="hotSearchWrap">
+      <block wx:for="{{hotSearch}}" wx:key="id">
+        <view class="hotsearch">{{item}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 底部导航栏 -->
+  <template is="tabbar"></template>
+</view>

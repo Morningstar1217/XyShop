@@ -1,7 +1,0 @@
-function getPriceFormat(value) {
-    return parseFloat(isNaN(value) ? 0 : value).toFixed(1);
-  }
-  
-  module.exports = {
-    getPriceFormat: getPriceFormat
-  }

@@ -1,12 +1,184 @@
 /* pages/fav/fav.wxss */
+@import "../template/template.wxss";
 
-@import '/pages/index/index.wxss';
-
-.goods-box {
-    height: auto;
-    padding-bottom: 10px;
+/* ************************联系客服图片*************************** */
+.kefu,
+.kefuImg {
+  width: 100%;
+  height: 200rpx;
 }
 
-.goodsTitle{
-    background-image: url("http://pbn1t9k4c.bkt.clouddn.com/fav3.png");
+/* *******************筛选********************* */
+.filterWrap {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding: 0 10rpx;
+  background: #fff;
+}
+
+.filterType,
+.filterStatus {
+  display: inline-block;
+  position: relative;
+  width: 150rpx;
+}
+
+.filterStatus {
+  margin-left: 40rpx;
+}
+
+.filterType::before,
+.filterStatus::before {
+  position: absolute;
+  top: 35rpx;
+  right: 4rpx;
+  content: '';
+  border-top: 14rpx solid;
+  border-bottom: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+}
+
+.typeOpen {
+  color: #ed654f;
+}
+
+.filterSearch {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 240rpx;
+  height: 50rpx;
+  margin: -2rpx 0 0 20rpx;
+  line-height: 50rpx;
+  vertical-align: middle;
+  font-size: 30rpx;
+  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/search.png");
+  background-size: 30rpx;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.filterManager {
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+  padding-left: 25rpx;
+  border-left: 1px solid #333;
+}
+
+.typeOpenList,
+.statusOpenList {
+  position: absolute;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20rpx 0;
+  background: #fff;
+  box-shadow: 0 5rpx 2rpx rgba(0, 0, 0, .2);
+  z-index: 999;
+}
+
+.typeList,
+.statusList {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 350rpx;
+  height: 84rpx;
+  margin: 10rpx 0 0 10rpx;
+  line-height: 84rpx;
+  text-indent: 40rpx;
+  font-size: 26rpx;
+  background: #f2f2f2;
+}
+
+.hadSured {
+  background: #fff5f4;
+  color: #ed654f;
+}
+
+.hook {
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: middle;
+  margin-left: 120rpx;
+  margin-bottom: 4rpx;
+}
+
+/* *******************收藏页面导航栏********************* */
+
+
+.couponBar {
+  width: 30%;
+  height: 100rpx;
+  background-image: linear-gradient(to right, #ea7e64, #d34353);
+}
+
+.couponBar>image {
+  width: 54rpx;
+  height: 54rpx;
+  margin: 24rpx 0 0;
+  box-shadow: 1rpx 1rpx 2rpx rgba(0, 0, 0, .1);
+}
+
+.collection {
+  width: 70%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  color: #d34353;
+  text-align: center;
+  background: #f7f7f7;
+}
+
+.faved {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-top: -4rpx;
+}
+
+/* *******************商品编辑************************* */
+.consolePlatform {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 100rpx;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 0 0 20rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, .3);
+  transition: .5s;
+}
+
+.selectedAll {
+  width: 160rpx;
+  height: 80rpx;
+}
+
+.selectedAll>icon {
+  margin-top: 16rpx;
+  vertical-align: top;
+}
+
+.delComs {
+  width: 160rpx;
+  text-align: center;
+  background: #ea7e64;
+}
+
+.noComs {
+  text-align: center;
+  height: 100rpx;
+  padding: 50rpx 0;
+  line-height: 100rpx;
+  font-size: 40rpx;
 }

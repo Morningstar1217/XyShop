@@ -81,7 +81,6 @@ Page({
       key: "favs",
       success: function(res) {
         app.globalData.favs = res.data;
-        console.log(app.globalData.favs);
       },
       fail: function() {
         wx.setStorage({
@@ -153,7 +152,7 @@ Page({
     });
   },
   //京东外链抓取
-  getJdList: function(param) {
+  getJdList: function() {
     const Jdurl = this.data.host + this.data.getJdList;
     const that = this;
     wx.request({
@@ -167,7 +166,12 @@ Page({
       success: function(res) {
         const arr1 = that.data.featuredComList;
         const arr2 = res.data.data.list;
-        arr1.push.apply(arr1, arr2);
+        if (that.data.currentPage <= 2) {
+          arr1.push.apply(arr1, arr2);
+        } else {
+          arr1.push(arr2);
+          console.log(arr1);
+        }
         that.setData({
           featuredComList: arr1,
           currentPage: that.data.currentPage + 1
@@ -181,6 +185,7 @@ Page({
   },
   //添加/取消收藏
   getCol: function(e) {
+    console.log(e);
     const id = e.currentTarget.id;
     const favs = app.globalData.favs;
     if (favs.indexOf(e.currentTarget.id) == -1) {

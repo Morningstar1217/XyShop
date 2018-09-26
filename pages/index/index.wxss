@@ -109,13 +109,13 @@ swiper-item > image {
 .showAll {
   position: absolute;
   display: inline-block;
-  width: 50rpx;
-  height: 50rpx;
-  top: 25rpx;
+  width: 30rpx;
+  height: 30rpx;
+  top: 36rpx;
   right: 20rpx;
   background-image: url("http://pbn1t9k4c.bkt.clouddn.com/all.png");
   background-repeat: no-repeat;
-  background-size: 50rpx;
+  background-size: 30rpx;
 }
 
 .showAlled {

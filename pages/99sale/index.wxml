@@ -24,12 +24,14 @@
   <!-- 精选商品 -->
   <view class="wrap4">
     <view class="featuredTitle">精选商品</view>
-    <block wx:for="{{featuredComList}}" wx:key="id">
-      <template is="featuredComList" data="{{item}}"></template>
-    </block>
+    <scroll-view scroll-y="true" class="featuredWrap" bind:scrolltolower="getMoreGoodsList">
+      <block wx:for="{{featuredComList}}" wx:key="id">
+        <template is="featuredComList" data="{{item,favPage}}"></template>
+      </block>
+    </scroll-view>
   </view>
   <!-- 底部导航栏 -->
   <template is="tabbar"></template>
   <!-- 大遮罩 -->
-  <template is="bigWrap" data="{{sureBuy}}"></template>
+  <template is="bigWrap" data="{{sureBuy,titleMsg}}"></template>
 </view>

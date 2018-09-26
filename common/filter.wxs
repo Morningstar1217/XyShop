@@ -1,6 +1,6 @@
 var filter = {
   toInt: function(value) {
-    return Math.ceil(value);
+    return Math.floor(value.toFixed(2));
   }
 };
 

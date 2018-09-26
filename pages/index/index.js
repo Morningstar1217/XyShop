@@ -69,7 +69,7 @@ Page({
     hotSellCom: [], //热销商品
     featuredComList: [], //京东精选
     titleMsg: "", //点击复制优惠券提示文字
-    favPage: true //是否是管理收藏页面
+    favPage: false //是否是管理收藏页面
   },
 
   /**
@@ -166,12 +166,7 @@ Page({
       success: function(res) {
         const arr1 = that.data.featuredComList;
         const arr2 = res.data.data.list;
-        if (that.data.currentPage <= 2) {
-          arr1.push.apply(arr1, arr2);
-        } else {
-          arr1.push(arr2);
-          console.log(arr1);
-        }
+        arr1.push.apply(arr1, arr2);
         that.setData({
           featuredComList: arr1,
           currentPage: that.data.currentPage + 1

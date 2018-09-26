@@ -23,7 +23,7 @@
         </view>
       </view>
     </view>
-    <image src="/images/favpage1.png" wx:if="{{favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" />
+    <image src="/images/favpage1.png" wx:if="{{!favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" />
   </view>
 </template>
 <!-- 热销榜单 -->

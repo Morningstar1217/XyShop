@@ -62,7 +62,7 @@
     </view>
   </view>
   <!-- 热销榜单 -->
-  <view class="wrap3">
+  <view class="wrap3" wx:if="{{count==0}}">
     <view class="hotSellTitle">
       <image src="/images/hotsell.png" class="hotSellImg" />
       <view class="sellTitle">热销榜单</view>

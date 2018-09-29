@@ -58,11 +58,15 @@
 
 .hotSellComName,
 .hotSellComPrice {
-  font-size: 28rpx;
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   text-align: center;
 }
 
 .hotSellComPrice {
+  height: 40rpx;
+  line-height: 40rpx;
   color: #d34353;
 }
 
@@ -88,7 +92,7 @@
 
 .consoleCom {
   position: absolute;
-  top: 30rpx;
+  top: 100rpx;
   left: 20rpx;
   width: 90rpx;
   height: 160rpx;
@@ -206,8 +210,8 @@
   position: absolute;
   right: 40rpx;
   bottom: 40rpx;
-  width: 80rpx;
-  height: 80rpx;
+  width: 50rpx;
+  height: 45rpx;
   overflow: hidden;
 }
 

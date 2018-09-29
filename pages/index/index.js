@@ -11,6 +11,7 @@ Page({
     getcatelist: app.globalData.getcatelist, //淘宝分类
     getGoodsList: app.globalData.getGoodsList, //淘宝列表
     getCouponUrl: app.globalData.getCouponUrl, //淘宝优惠券
+    getMiaoList: app.globalData.getMiaoList, //热门
     menuFlag: true, //是否打开全部分类
     sureBuy: false, //遮罩是否打开
     currentPage: 1, //请求的当前页面页码
@@ -21,8 +22,9 @@ Page({
     showTop: false //返回顶部按钮显示隐藏
   },
   onLoad: function(options) {
-    this.getGoodsList();
-    this.getMenu();
+    this.getGoodsList(); //商品
+    this.getMenu(); //分类
+    this.getHotSellCom(); //热销
   },
   /* 打开搜索页面 */
   toSearch: function() {
@@ -47,7 +49,9 @@ Page({
   },
   /* 选择分类 */
   changeMenu: function(e) {
-    wx.showLoading();
+    wx.showLoading({
+      title: "loading..."
+    });
     this.setData({
       count: e.target.id,
       featuredComList: [],
@@ -133,25 +137,33 @@ Page({
   },
   //添加/取消收藏
   getCol: function(e) {
-    console.log(e);
-    const id = e.currentTarget.id;
-    const favs = app.globalData.favs;
-    if (favs.indexOf(e.currentTarget.id) == -1) {
-      favs.push(e.currentTarget.id);
-      wx.showToast({
-        title: "收藏成功",
-        icon: "success"
-      });
-    } else {
-      favs.splice(favs.indexOf(e.currentTarget.id), 1);
-      wx.showToast({
-        title: "取消成功",
-        icon: "success"
-      });
+    var favs = wx.getStorageSync("favs");
+    if (!favs) {
+      favs = [];
     }
+    const data = e.currentTarget;
+    const sku = data.id;
+    const arr2 = [];
+    const col = {
+      sku: sku,
+      pic: data.dataset.pic,
+      title: data.dataset.title,
+      price: data.dataset.price,
+      market_price: data.dataset.marketprice
+    };
+    favs.forEach(ele => {
+      if (sku != ele.sku) {
+        arr2.unshift(ele);
+      }
+    });
+    arr2.unshift(col);
     wx.setStorage({
       key: "favs",
-      data: favs
+      data: arr2
+    });
+    wx.showToast({
+      title: "收藏成功",
+      icon: "success"
     });
   },
   //是否显示返回顶部
@@ -173,6 +185,22 @@ Page({
     });
     this.setData({
       showTop: false
+    });
+  },
+  //获取热销
+  getHotSellCom: function() {
+    const that = this;
+    wx.request({
+      url: that.data.host + that.data.getMiaoList,
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: function(res) {
+        console.log(res.data.data);
+        that.setData({
+          hotSellCom: res.data.data.list
+        });
+      }
     });
   }
 });

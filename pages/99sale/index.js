@@ -7,26 +7,28 @@ Page({
   data: {
     sureBuy: false, //是否打开遮罩
     host: app.globalData.host, //主网站地址
-    getGoodsList: app.globalData.getGoodsList, //获取拼多多外链地址
-    goodsPromotionUrl: app.globalData.goodsPromotionUrl, //拼多多优惠券转链
+    getNineList: app.globalData.getNineList, //9.9包邮
+    getCouponUrl: app.globalData.getCouponUrl, //淘宝优惠券
     currentPage: 1, //请求的当前页面页码
-    hotSellCom: [], //热销商品
-    featuredComList: [], //拼多多精选
+    featuredComList: [], //精选
     titleMsg: "", //点击复制优惠券提示文字
-    favPage: true //是否是管理收藏页面
+    favPage: false //是否是管理收藏页面
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: "loading..."
+    });
     this.getGoodsList();
   },
   /* 复制淘口令 */
   goBuy: function(e) {
     const that = this;
     const sku = e.currentTarget.id;
-    const url = this.data.host + this.data.goodsPromotionUrl;
+    const url = this.data.host + this.data.getCouponUrl;
     wx.request({
       url: url,
       data: {
@@ -36,9 +38,9 @@ Page({
         "Content-Type": "application/json"
       },
       success: function(res) {
-        if (res.data.data.url) {
+        if (res.data.data) {
           wx.setClipboardData({
-            data: res.data.data.url,
+            data: res.data.data,
             success: function(res) {
               wx.hideToast();
               that.setData({
@@ -62,9 +64,9 @@ Page({
       sureBuy: false
     });
   },
-  //获取拼多多商品链接
+  //获取商品链接
   getGoodsList: function() {
-    const goodsUrl = this.data.host + this.data.getGoodsList;
+    const goodsUrl = this.data.host + this.data.getNineList;
     const that = this;
     wx.request({
       url: goodsUrl,
@@ -75,6 +77,7 @@ Page({
         "Content-Type": "application/json"
       },
       success: function(res) {
+        console.log(res.data);
         const arr1 = that.data.featuredComList;
         const arr2 = res.data.data.list;
         arr1.push.apply(arr1, arr2);
@@ -82,11 +85,64 @@ Page({
           featuredComList: arr1,
           currentPage: that.data.currentPage + 1
         });
+        wx.hideLoading();
       }
     });
   },
   //获取更多
   getMoreGoodsList: function() {
     this.getGoodsList();
+  },
+  //添加/取消收藏
+  getCol: function(e) {
+    var favs = wx.getStorageSync("favs");
+    if (!favs) {
+      favs = [];
+    }
+    const data = e.currentTarget;
+    const sku = data.id;
+    const arr2 = [];
+    const col = {
+      sku: sku,
+      pic: data.dataset.pic,
+      title: data.dataset.title,
+      price: data.dataset.price,
+      market_price: data.dataset.marketprice
+    };
+    favs.forEach(ele => {
+      if (sku != ele.sku) {
+        arr2.unshift(ele);
+      }
+    });
+    arr2.unshift(col);
+    wx.setStorage({
+      key: "favs",
+      data: arr2
+    });
+    wx.showToast({
+      title: "收藏成功",
+      icon: "success"
+    });
+  },
+  //是否显示返回顶部
+  onPageScroll: function(e) {
+    if (e.scrollTop >= 500) {
+      this.setData({
+        showTop: true
+      });
+    } else {
+      this.setData({
+        showTop: false
+      });
+    }
+  },
+  //返回顶部
+  toTop: function() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
+    this.setData({
+      showTop: false
+    });
   }
 });

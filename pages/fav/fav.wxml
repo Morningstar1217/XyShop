@@ -7,10 +7,10 @@
   </view>
   <!-- 商品类目筛选 -->
   <view class="filterWrap">
-    <view class="filterType {{typeOpenFlag?'typeOpen':''}}" bind:tap="typeOpen">{{typeTitle}}</view>
+    <!-- <view class="filterType {{typeOpenFlag?'typeOpen':''}}" bind:tap="typeOpen">{{typeTitle}}</view>
     <view class="filterStatus {{statusOpenFlag?'typeOpen':''}}" bind:tap="statusOpen">
       {{statusTitle}}
-    </view>
+    </view> -->
     <input type="text" class="filterSearch" />
     <view class="filterManager" bind:tap="filterManager">管理</view>
     <!-- 分类展示 -->
@@ -32,36 +32,14 @@
     </view>
   </view>
   <!-- 收藏商品列表 -->
-  <view class="wrap4 {{consolePlat&&featuredComList.length!=0?'wrap4Change':''}}">
-    <block wx:for="{{featuredComList}}" wx:key="id">
-      <!-- <view class="featuredCom" id="{{item.id}}" bind:tap="goBuy">
-        <view class="consoleCom" wx:if="{{consolePlat}}">
-          <icon wx:if="{{item.selected}}" type="success" color="red" catch:tap="change" data-index="{{index}}" />
-          <icon wx:else type="circle" catch:tap="change" data-index="{{index}}" />
-        </view>
-        <view class="featuredImg {{consolePlat?'consoleIng':''}}">
-          <image src="{{item.imgUrl}}" class="comImg" />
-          <image src="/images/integral.png" class="integral" />
-        </view>
-        <view class="featuredComDetail {{consolePlat?'consoleIng':''}}">
-          <view class="featuredName">{{item.name}}</view>
-          <view class="goHongWrap">
-            <view class="goHong">记得去“大白HONG登记哦~”</view>
-            <view class="hadBuy">{{item.hadBuy}}已购</view>
-          </view>
-          <view class="priceShow">
-            <view class="priceNow">￥{{item.priceNow}}</view>
-            <view class="priceAgo">￥{{item.priceAgo}}</view>
-            <view class="coupon">{{item.priceAgo-item.priceNow}}元券</view>
-          </view>
-        </view>
-      </view> -->
-      <template is="featuredComList" data="{{item,consolePlat,index:index}}"></template>
+  <view class="wrap4 {{consolePlat&&favs.length!=0?'wrap4Change':''}}">
+    <block wx:for="{{favs}}" wx:key="id">
+      <template is="featuredComList" data="{{item,consolePlat,index:index,favPage}}"></template>
     </block>
-    <view class="noComs" wx:if="{{featuredComList.length==0}}">暂时没有收藏哦~</view>
+    <view class="noComs" wx:if="{{favs.length==0}}">暂时没有收藏哦~</view>
   </view>
   <!-- 商品编辑 -->
-  <view class="consolePlatform" wx:if="{{consolePlat&&featuredComList.length!=0}}">
+  <view class="consolePlatform" wx:if="{{consolePlat&&favs.length!=0}}">
     <view class="selectedAll" bind:tap="selectAll">全选</view>
     <view class="delComs" bind:tap="deleteList">删除</view>
   </view>
@@ -76,11 +54,5 @@
     </view>
   </view>
   <!-- 大遮罩 -->
-  <view class="bigWrap" wx:if="{{sureBuy}}">
-    <view class="successMsg">
-      <view class="successTItle">复制成功</view>
-      <view class="successContent">已复制淘口令，打开手机淘宝领券下单即可\n领券下单成功后记得回大白之家[登记哦]~</view>
-      <view class="successTItle" bind:tap="closeWrap">确定</view>
-    </view>
-  </view>
+  <template is="bigWrap" data="{{sureBuy,titleMsg}}"></template>
 </view>

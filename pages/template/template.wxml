@@ -23,17 +23,17 @@
         </view>
       </view>
     </view>
-    <image src="/images/favpage1.png" wx:if="{{!favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" />
+    <image src="/images/faved.png" wx:if="{{!favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" data-pic="{{item.pic}}" data-score="{{item.score}}" data-title="{{item.title}}" data-price="{{item.price}}" data-marketprice="{{item.market_price}}" />
   </view>
 </template>
 <!-- 热销榜单 -->
 <template name="hotSellCom">
-  <view class="hotSellCom" bind:tap="goBuy">
+  <view class="hotSellCom" bind:tap="goBuy" id="{{item.sku}}">
     <view class="hotSellComImg">
-      <image src="{{item.imgUrl}}" />
+      <image src="{{item.pic}}" />
     </view>
-    <view class="hotSellComName">{{item.name}}</view>
-    <view class="hotSellComPrice">￥{{item.priceNow}}</view>
+    <view class="hotSellComName">{{item.title}}</view>
+    <view class="hotSellComPrice">￥{{item.price}}</view>
   </view>
 </template>
 <!-- 底部导航栏 -->

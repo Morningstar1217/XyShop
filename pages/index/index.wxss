@@ -89,6 +89,7 @@ swiper-item > image {
   box-sizing: border-box;
   line-height: 100rpx;
   padding-left: 20rpx;
+  padding-right: 20rpx;
   font-size: 28rpx;
   background: #fff;
   width: 100%;

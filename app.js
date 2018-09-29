@@ -24,6 +24,9 @@ App({
     getcatelist: "api.php/quan.tao/getcatelist", //淘宝分类
     getGoodsList: "api.php/quan.tao/getGoodsList", //淘宝列表
     getCouponUrl: "api.php/quan.tao/getCouponUrl", //淘宝优惠券
+    getNineList: "api.php/quan.tao/getNineList", //9.9包邮
+    getMiaoList: "api.php/quan.tao/getMiaoList", //秒杀
+    getZhiboList: "api.php/quan.tao/getZhiboList",//直播
     favs: [] //添加收藏列表
   }
 });

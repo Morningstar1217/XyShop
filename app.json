@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/99sale/index",
+    "pages/fav/fav",
     "pages/quan/quan",
     "pages/tutorial/tutorial",
-    "pages/fav/fav",
     "pages/search/search",
     "pages/searchResult/searchResult",
-    "pages/99sale/index",
     "pages/featured/featured",
     "pages/timeLimit/timeLimit"
   ],

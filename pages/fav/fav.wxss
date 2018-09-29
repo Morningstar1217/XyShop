@@ -34,7 +34,7 @@
   position: absolute;
   top: 35rpx;
   right: 4rpx;
-  content: '';
+  content: "";
   border-top: 14rpx solid;
   border-bottom: 0;
   border-left: 10rpx solid transparent;
@@ -48,7 +48,7 @@
 .filterSearch {
   display: inline-block;
   box-sizing: border-box;
-  width: 240rpx;
+  width: 540rpx;
   height: 50rpx;
   margin: -2rpx 0 0 20rpx;
   line-height: 50rpx;
@@ -77,7 +77,7 @@
   width: 100%;
   padding: 20rpx 0;
   background: #fff;
-  box-shadow: 0 5rpx 2rpx rgba(0, 0, 0, .2);
+  box-shadow: 0 5rpx 2rpx rgba(0, 0, 0, 0.2);
   z-index: 999;
 }
 
@@ -109,18 +109,17 @@
 
 /* *******************收藏页面导航栏********************* */
 
-
 .couponBar {
   width: 30%;
   height: 100rpx;
   background-image: linear-gradient(to right, #ea7e64, #d34353);
 }
 
-.couponBar>image {
+.couponBar > image {
   width: 54rpx;
   height: 54rpx;
   margin: 24rpx 0 0;
-  box-shadow: 1rpx 1rpx 2rpx rgba(0, 0, 0, .1);
+  box-shadow: 1rpx 1rpx 2rpx rgba(0, 0, 0, 0.1);
 }
 
 .collection {
@@ -155,8 +154,8 @@
   padding: 0 0 0 20rpx;
   font-size: 28rpx;
   color: #fff;
-  background: rgba(0, 0, 0, .3);
-  transition: .5s;
+  background: rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
 }
 
 .selectedAll {
@@ -164,7 +163,7 @@
   height: 80rpx;
 }
 
-.selectedAll>icon {
+.selectedAll > icon {
   margin-top: 16rpx;
   vertical-align: top;
 }

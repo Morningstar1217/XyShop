@@ -24,7 +24,7 @@
   <!-- 精选商品 -->
   <view class="wrap4">
     <view class="featuredTitle">精选商品</view>
-    <scroll-view scroll-y="true" class="featuredWrap" bind:scrolltolower="getMoreGoodsList">
+    <scroll-view scroll-y="true" class="featuredWrap" bind:scrolltolower="getMoreGoodsList" enable-back-to-top='true'>
       <block wx:for="{{featuredComList}}" wx:key="id">
         <template is="featuredComList" data="{{item,favPage}}"></template>
       </block>

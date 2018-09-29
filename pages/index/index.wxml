@@ -22,23 +22,23 @@
     <!-- </block> -->
   </swiper>
   <!-- 分类 -->
-  <view class="wrap2">
+  <view class="section">
     <view class="menuWrap">
       <scroll-view scroll-x="true" class="menuList" wx:if="{{menuFlag}}">
         <block wx:for="{{menu}}" wx:key="id">
-          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu">
-            {{item.name}}
+          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu" data-title="{{item.title}}">
+            {{item.title}}
           </view>
         </block>
       </scroll-view>
       <view class="menuListOpen" wx:else>
         <block wx:for="{{menu}}" wx:key="id">
-          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu">
-            {{item.name}}
+          <view class="menuDetail {{count==item.id?'selected':''}}" id="{{item.id}}" bind:tap="changeMenu" data-title="{{item.title}}">
+            {{item.title}}
           </view>
         </block>
       </view>
-      <view class="showAll {{menuFlag?'':'showAlled'}}" bind:tap="openMenu"></view>
+      <image class="showAll" bind:tap="openMenu" src="/images/showall.png"></image>
     </view>
   </view>
   <!-- 展示区 -->
@@ -60,56 +60,6 @@
         </navigator>
       </view>
     </view>
-    <!-- <view wx:else class="littleMenuWrap">
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-      <view class="littleMenu">
-        <image class="littleImg" src="/images/wmClothing.png" />
-        <view class="littleName">女装</view>
-      </view>
-    </view> -->
   </view>
   <!-- 热销榜单 -->
   <view class="wrap3">
@@ -126,11 +76,13 @@
   <!-- 精选商品 -->
   <view class="wrap4">
     <view class="featuredTitle">精选商品</view>
-    <scroll-view scroll-y="true" class="featuredWrap" bind:scrolltolower="getMoreJdList">
+    <view class="featuredWrap" bind:scrolltolower="getMoreGoodsList">
       <block wx:for="{{featuredComList}}" wx:key="id">
         <template is="featuredComList" data="{{item,favPage}}"></template>
       </block>
-    </scroll-view>
+    </view>
+    <!-- 返回顶部 -->
+    <view class="toTop" bind:tap="toTop" wx:if="{{showTop}}">︿</view>
   </view>
   <!-- 底部导航栏 -->
   <template is="tabbar"></template>

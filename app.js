@@ -21,14 +21,9 @@ App({
   /* 都使用GET方式 */
   globalData: {
     host: "https://www.97youmeitao.com/", //主域名
-    getJdList: "api.php/quan.jd/getJdList", //京东外链默认抓取商品列表
-    searchJdGood: "api.php/quan.jd/searchJdGood", //京东外链搜索商品
-    getJdCoupon: "api.php/quan.jd/getJdCoupon", //生成京东联盟优惠券地址
-    getGoodsList: "api.php/quan.pddapi/getGoodsList", //拼多多默认商品列表
-    searchGoods: "api.php/quan.pddapi/searchGoods", //拼多多搜索商品
-    goodsPromotionUrl: "api.php/quan.pddapi/goodsPromotionUrl", //拼多多转链
-    inviteUrl: "api.php/rank.rank/getShareList", //邀请排行榜获取
-    proxyUrl: "api.php/rank.rank/getAgentList", //代理排行榜获取
-    favs: [],//添加收藏列表 
+    getcatelist: "api.php/quan.tao/getcatelist", //淘宝分类
+    getGoodsList: "api.php/quan.tao/getGoodsList", //淘宝列表
+    getCouponUrl: "api.php/quan.tao/getCouponUrl", //淘宝优惠券
+    favs: [] //添加收藏列表
   }
 });

@@ -5,91 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    menu: [
-      {
-        id: 0,
-        name: "全部"
-      },
-      {
-        id: 1,
-        name: "女装"
-      },
-      {
-        id: 2,
-        name: "男装"
-      },
-      {
-        id: 3,
-        name: "美食"
-      },
-      {
-        id: 4,
-        name: "居家"
-      },
-      {
-        id: 5,
-        name: "美妆"
-      },
-      {
-        id: 7,
-        name: "鞋包"
-      },
-      {
-        id: 8,
-        name: "女装"
-      },
-      {
-        id: 9,
-        name: "男装"
-      },
-      {
-        id: 10,
-        name: "美食"
-      },
-      {
-        id: 11,
-        name: "居家"
-      },
-      {
-        id: 12,
-        name: "美妆"
-      },
-      {
-        id: 13,
-        name: "鞋包"
-      }
-    ],
+    menu: [],
     count: 0, //选择分类
     host: app.globalData.host, //主网站地址
-    getJdList: app.globalData.getJdList, //获取京东外链地址
-    getJdCoupon: app.globalData.getJdCoupon, //京东优惠券转链
+    getcatelist: app.globalData.getcatelist, //淘宝分类
+    getGoodsList: app.globalData.getGoodsList, //淘宝列表
+    getCouponUrl: app.globalData.getCouponUrl, //淘宝优惠券
     menuFlag: true, //是否打开全部分类
     sureBuy: false, //遮罩是否打开
     currentPage: 1, //请求的当前页面页码
     hotSellCom: [], //热销商品
-    featuredComList: [], //京东精选
+    featuredComList: [], //精选商品
     titleMsg: "", //点击复制优惠券提示文字
-    favPage: false //是否是管理收藏页面
+    favPage: false, //是否是管理收藏页面
+    showTop: false //返回顶部按钮显示隐藏
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
-    this.getJdList();
-    wx.getStorage({
-      key: "favs",
-      success: function(res) {
-        app.globalData.favs = res.data;
-      },
-      fail: function() {
-        wx.setStorage({
-          key: "favs",
-          data: app.globalData.favs
-        });
-      }
-    });
-    // wx.clearStorage()
+    this.getGoodsList();
+    this.getMenu();
   },
   /* 打开搜索页面 */
   toSearch: function() {
@@ -97,11 +30,30 @@ Page({
       url: "/pages/search/search"
     });
   },
+  //获取分类
+  getMenu: function() {
+    const that = this;
+    wx.request({
+      url: that.data.host + that.data.getcatelist,
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: function(res) {
+        that.setData({
+          menu: res.data.data
+        });
+      }
+    });
+  },
   /* 选择分类 */
   changeMenu: function(e) {
+    wx.showLoading();
     this.setData({
-      count: e.target.id
+      count: e.target.id,
+      featuredComList: [],
+      currentPage: 1
     });
+    this.getGoodsList();
   },
   /* 打开全部分类 */
   openMenu: function() {
@@ -113,13 +65,11 @@ Page({
   goBuy: function(e) {
     const that = this;
     const sku = e.currentTarget.id;
-    const couponUrl = e.currentTarget.dataset.url;
-    const url = this.data.host + this.data.getJdCoupon;
+    const url = this.data.host + this.data.getCouponUrl;
     wx.request({
       url: url,
       data: {
-        sku: sku,
-        url: couponUrl
+        sku: sku
       },
       header: {
         "Content-Type": "application/json"
@@ -151,19 +101,21 @@ Page({
       sureBuy: false
     });
   },
-  //京东外链抓取
-  getJdList: function() {
-    const Jdurl = this.data.host + this.data.getJdList;
+  //商品抓取
+  getGoodsList: function() {
+    const url = this.data.host + this.data.getGoodsList;
     const that = this;
     wx.request({
-      url: Jdurl,
+      url: url,
       data: {
-        page: that.data.currentPage
+        page: that.data.currentPage,
+        cid: that.data.count
       },
       header: {
         "Content-Type": "application/json"
       },
       success: function(res) {
+        console.log(res);
         const arr1 = that.data.featuredComList;
         const arr2 = res.data.data.list;
         arr1.push.apply(arr1, arr2);
@@ -171,12 +123,13 @@ Page({
           featuredComList: arr1,
           currentPage: that.data.currentPage + 1
         });
+        wx.hideLoading();
       }
     });
   },
-  //获取更多京东外链
-  getMoreJdList: function() {
-    this.getJdList();
+  //获取更多商品
+  onReachBottom: function() {
+    this.getGoodsList();
   },
   //添加/取消收藏
   getCol: function(e) {
@@ -199,6 +152,27 @@ Page({
     wx.setStorage({
       key: "favs",
       data: favs
+    });
+  },
+  //是否显示返回顶部
+  onPageScroll: function(e) {
+    if (e.scrollTop >= 500) {
+      this.setData({
+        showTop: true
+      });
+    } else {
+      this.setData({
+        showTop: false
+      });
+    }
+  },
+  //返回顶部
+  toTop: function() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
+    this.setData({
+      showTop: false
     });
   }
 });

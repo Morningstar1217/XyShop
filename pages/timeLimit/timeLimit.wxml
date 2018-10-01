@@ -16,9 +16,11 @@
     <block wx:for="{{featuredComList}}" wx:key="id">
       <template is="featuredComList" data="{{item}}"></template>
     </block>
+    <!-- 返回顶部 -->
+    <view class="toTop" bind:tap="toTop" wx:if="{{showTop}}">︿</view>
   </view>
   <!-- 底部导航栏 -->
   <template is="tabbar"></template>
   <!-- 大遮罩 -->
-  <template is="bigWrap" data="{{sureBuy}}"></template>
+  <template is="bigWrap" data="{{sureBuy,titleMsg}}"></template>
 </view>

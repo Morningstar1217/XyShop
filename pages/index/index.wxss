@@ -193,3 +193,54 @@ swiper-item > image {
   font-size: 28rpx;
   text-align: center;
 }
+/* 条件筛选 */
+
+.filter {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 80rpx;
+  line-height: 58rpx;
+  padding: 10rpx 20rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.filterList {
+  position: relative;
+  width: 25%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.filterListed {
+  color: #ff4e66;
+}
+
+.price_l,
+.price_h {
+  position: absolute;
+  right: 28rpx;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+}
+
+.price_l {
+  top: 12rpx;
+  border-top: none;
+  border-bottom: 15rpx solid #707070;
+}
+
+.price_h {
+  top: 32rpx;
+  border-bottom: none;
+  border-top: 15rpx solid #707070;
+}
+
+.price_l_ed {
+  border-bottom-color: #d34353;
+}
+.price_h_ed {
+  border-top-color: #d34353;
+}

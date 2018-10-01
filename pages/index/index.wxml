@@ -75,7 +75,23 @@
   </view>
   <!-- 精选商品 -->
   <view class="wrap4">
-    <view class="featuredTitle">精选商品</view>
+    <!-- 条件筛选 -->
+    <view class="filter">
+      <view class="filterList {{filterCount==0?'filterListed':''}}" id="0" bind:tap="changeFilter">
+        最新
+      </view>
+      <view class="filterList {{filterCount==1?'filterListed':''}}" id="1" bind:tap="changeFilter">
+        销量
+      </view>
+      <view class="filterList {{filterCount==2?'filterListed':''}}" id="2" bind:tap="changeFilter">
+        价格
+        <view class="price_l {{filterCount==2&&!price_h?'price_l_ed':''}}"></view>
+        <view class="price_h {{filterCount==2&&price_h?'price_h_ed':''}}"></view>
+      </view>
+      <view class="filterList {{filterCount==3?'filterListed':''}}" id="3" bind:tap="changeFilter">
+        人气
+      </view>
+    </view>
     <view class="featuredWrap" bind:scrolltolower="getMoreGoodsList">
       <block wx:for="{{featuredComList}}" wx:key="id">
         <template is="featuredComList" data="{{item,favPage}}"></template>

@@ -7,8 +7,8 @@
     </view>
     <view class="featuredImg {{consolePlat?'consoleIng':''}}">
       <image src="{{item.pic}}" class="comImg" />
-      <image src="/images/integral.png" class="integral" />
-      <text class="score">{{item.score}}</text>
+      <!-- <image src="/images/integral.png" class="integral" /> -->
+      <!-- <text class="score">{{item.score}}</text> -->
     </view>
     <view class="featuredComDetail {{consolePlat?'consoleIng':''}}">
       <view class="featuredName">{{item.title}}</view>
@@ -23,7 +23,9 @@
         </view>
       </view>
     </view>
-    <image src="/images/faved.png" wx:if="{{!favPage}}" class="favPage" catch:tap="getCol" id="{{item.sku}}" data-pic="{{item.pic}}" data-score="{{item.score}}" data-title="{{item.title}}" data-price="{{item.price}}" data-marketprice="{{item.market_price}}" />
+    <view class="favPage" catch:tap="getCol" wx:if="{{!favPage}}" id="{{item.sku}}" data-pic="{{item.pic}}" data-score="{{item.score}}" data-title="{{item.title}}" data-price="{{item.price}}" data-marketprice="{{item.market_price}}">
+      <image src="/images/faved.png" />
+    </view>
   </view>
 </template>
 <!-- 热销榜单 -->

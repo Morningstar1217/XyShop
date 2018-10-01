@@ -19,7 +19,9 @@ Page({
     featuredComList: [], //精选商品
     titleMsg: "", //点击复制优惠券提示文字
     favPage: false, //是否是管理收藏页面
-    showTop: false //返回顶部按钮显示隐藏
+    showTop: false, //返回顶部按钮显示隐藏
+    filterCount: 0, //条件筛选
+    price_h: true //价格从高到低
   },
   onLoad: function(options) {
     this.getGoodsList(); //商品
@@ -55,6 +57,7 @@ Page({
     this.setData({
       count: e.target.id,
       featuredComList: [],
+      filterCount: 0,
       currentPage: 1
     });
     this.getGoodsList();
@@ -106,14 +109,15 @@ Page({
     });
   },
   //商品抓取
-  getGoodsList: function() {
+  getGoodsList: function(sort = "latest") {
     const url = this.data.host + this.data.getGoodsList;
     const that = this;
     wx.request({
       url: url,
       data: {
         page: that.data.currentPage,
-        cid: that.data.count
+        cid: that.data.count,
+        sort: sort
       },
       header: {
         "Content-Type": "application/json"
@@ -128,6 +132,11 @@ Page({
           currentPage: that.data.currentPage + 1
         });
         wx.hideLoading();
+      },
+      fail: function() {
+        that.setData({
+          featuredComList: []
+        });
       }
     });
   },
@@ -202,5 +211,46 @@ Page({
         });
       }
     });
+  },
+  //切换条件筛选
+  changeFilter: function(e) {
+    wx.showLoading({
+      title: "loading..."
+    });
+    this.setData({
+      featuredComList: [],
+      filterCount: e.currentTarget.id,
+      currentPage: 1
+    });
+    switch (e.currentTarget.id) {
+      case "0":
+        var sort = "latest";
+        this.getGoodsList(sort);
+        this.setData({
+          price_h: true
+        });
+        break;
+      case "1":
+        var sort = "sell";
+        this.getGoodsList(sort);
+        this.setData({
+          price_h: true
+        });
+        break;
+      case "2":
+        this.setData({
+          price_h: !this.data.price_h
+        });
+        sort = this.data.price_h ? "price_h" : "price";
+        this.getGoodsList(sort);
+        break;
+      default:
+        sort = "t";
+        this.getGoodsList(sort);
+        this.setData({
+          price_h: true
+        });
+        break;
+    }
   }
 });

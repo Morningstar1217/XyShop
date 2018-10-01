@@ -4,8 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    history: ["曼秀雷敦", "鸿星尔克", "MacBook", "iPhoneX"],
-    hotSearch: ["曼秀雷敦", "鸿星尔克", "MacBook", "iPhoneX"],
+    historys: [],
+    hotSearch: ["女装", "男装", "MacBook", "iPhoneX"],
     inputVlue: ""
   },
 
@@ -16,17 +16,31 @@ Page({
 
   /* 返回到首页 */
   returnIndex: function() {
-    wx.redirectTo({
-      url: "../index/index"
+    wx.navigateBack();
+  },
+
+  //获取收藏
+  getFavs: function(param) {
+    var historys = wx.getStorageSync("historys");
+    if (historys.length == 0) {
+      historys = [];
+    }
+    this.setData({
+      historys: historys
     });
   },
 
   /* 删除当前历史记录 */
   delete: function(e) {
     let index = e.target.dataset.index;
-    this.data.history.splice(index, 1);
+    var historys = this.data.historys;
+    historys.splice(index, 1);
     this.setData({
-      history: this.data.history
+      historys: historys
+    });
+    wx.setStorage({
+      key: "historys",
+      data: historys
     });
   },
 
@@ -36,45 +50,35 @@ Page({
       inputVlue: e.detail.value
     });
   },
+  //点击历史记录搜索
+  tosearch: function(e) {
+    var index = e.currentTarget.dataset.index;
+    this.setData({
+      inputVlue: this.data.historys[index]
+    });
+    this.search();
+  },
+  //点击热搜搜索
+  tohsearch: function(e) {
+    var index = e.currentTarget.dataset.index;
+    this.setData({
+      inputVlue: this.data.hotSearch[index]
+    });
+    this.search();
+  },
   /* 搜索 */
   search: function() {
-    wx.redirectTo({
+    if (!this.data.inputVlue) {
+      this.setData({
+        inputVlue: "女装"
+      });
+    }
+    wx.navigateTo({
       url: "../searchResult/searchResult?search=" + this.data.inputVlue
     });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
+  //渲染历史记录
+  onShow: function() {
+    this.getFavs();
+  }
 });

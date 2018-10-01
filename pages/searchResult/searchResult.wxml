@@ -3,7 +3,7 @@
 <view class="container">
   <!-- 顶部搜索区 -->
   <view class="header">
-    <input type="text" class="search" placeholder="{{searchResult}}" confirm-type="search" bindconfirm="search" bindinput="remSearch" />
+    <input type="text" class="search" placeholder="{{keyword}}" confirm-type="search" bindconfirm="search" bindinput="remSearch" />
     <text class="cancel" bind:tap="returnIndex">取消</text>
   </view>
   <!-- 商品搜索结果区 -->
@@ -11,7 +11,12 @@
     <block wx:for="{{featuredComList}}" wx:key="id">
       <template is="featuredComList" data="{{item}}"></template>
     </block>
+    <view class="noGoods" wx:if="{{searchFlag}}">暂时没有商品~先看看别的吧~</view>
+    <!-- 返回顶部 -->
+    <view class="toTop" bind:tap="toTop" wx:if="{{showTop}}">︿</view>
   </view>
   <!-- 底部导航栏 -->
   <template is="tabbar"></template>
+  <!-- 大遮罩 -->
+  <template is="bigWrap" data="{{sureBuy,titleMsg}}"></template>
 </view>

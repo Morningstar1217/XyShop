@@ -7,7 +7,7 @@ Page({
   data: {
     sureBuy: false, //是否打开遮罩
     host: app.globalData.host, //主网站地址
-    getZhiboList: app.globalData.getZhiboList, //聚划算
+    getGoodsList: app.globalData.getGoodsList, //获取淘宝列表
     getCouponUrl: app.globalData.getCouponUrl, //淘宝优惠券
     currentPage: 1, //请求的当前页面页码
     featuredComList: [], //精选
@@ -66,32 +66,27 @@ Page({
   },
   //获取商品链接
   getGoodsList: function() {
-    const goodsUrl = this.data.host + this.data.getZhiboList;
+    const goodsUrl = this.data.host + this.data.getGoodsList;
     const that = this;
     wx.request({
       url: goodsUrl,
       data: {
-        page: that.data.currentPage
+        page: that.data.currentPage,
+        cid: 4,
+        sort: "price"
       },
       header: {
         "Content-Type": "application/json"
       },
       success: function(res) {
         console.log(res.data);
-        const arr1 = that.data.featuredComList;
-        const arr2 = res.data.data.list;
-        arr1.push.apply(arr1, arr2);
+        const featuredComList = res.data.data.list.slice(0, 50);
         that.setData({
-          featuredComList: arr1,
-          currentPage: that.data.currentPage + 1
+          featuredComList: featuredComList
         });
         wx.hideLoading();
       }
     });
-  },
-  //获取更多
-  getMoreGoodsList: function() {
-    this.getGoodsList();
   },
   //添加/取消收藏
   getCol: function(e) {

@@ -1,144 +1,194 @@
-// pages/searchResult/searchResult.js
+var app = getApp();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    featuredComList: [
-      {
-        id: 0,
-        imgUrl: "/images/com-1.png",
-        name: "炒锅",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 1,
-        imgUrl: "/images/com-2.png",
-        name: "纸巾",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 2,
-        imgUrl: "/images/com-3.png",
-        name: "衣服",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 3,
-        imgUrl: "/images/com-1.png",
-        name: "炒锅",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 4,
-        imgUrl: "/images/com-2.png",
-        name: "纸巾",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 5,
-        imgUrl: "/images/com-3.png",
-        name: "衣服",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 6,
-        imgUrl: "/images/com-1.png",
-        name: "炒锅",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 7,
-        imgUrl: "/images/com-2.png",
-        name: "纸巾",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      },
-      {
-        id: 8,
-        imgUrl: "/images/com-3.png",
-        name: "衣服",
-        hadBuy: 27382,
-        priceNow: 99.9,
-        priceAgo: 199.9
-      }
-    ],
-    searchResult: "",
-    inputVlue: ""
+    menu: [],
+    count: 0, //选择分类
+    host: app.globalData.host, //主网站地址
+    getListByKeyword: app.globalData.getListByKeyword, //搜索接口
+    getCouponUrl: app.globalData.getCouponUrl, //淘宝优惠券
+    sureBuy: false, //遮罩是否打开
+    currentPage: 1, //请求的当前页面页码
+    featuredComList: [], //精选商品
+    titleMsg: "", //点击复制优惠券提示文字
+    favPage: false, //是否是管理收藏页面
+    showTop: false, //返回顶部按钮显示隐藏
+    keyword: "", //搜索关键字
+    searchFlag: false //搜索中
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
     this.setData({
-      searchResult: options.search
+      keyword: options.search
+    });
+    this.search();
+  },
+
+  /* 复制淘口令 */
+  goBuy: function(e) {
+    const that = this;
+    const sku = e.currentTarget.id;
+    const url = this.data.host + this.data.getCouponUrl;
+    wx.request({
+      url: url,
+      data: {
+        sku: sku
+      },
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: function(res) {
+        if (res.data.data) {
+          wx.setClipboardData({
+            data: res.data.data,
+            success: function(res) {
+              wx.hideToast();
+              that.setData({
+                sureBuy: true,
+                titleMsg: "已复制淘口令，打开手机淘宝领券下单即可"
+              });
+            }
+          });
+        } else {
+          that.setData({
+            sureBuy: true,
+            titleMsg: "该商品优惠券已被抢光~再看看别的商品吧"
+          });
+        }
+      }
     });
   },
-  /* 返回到首页 */
-  returnIndex: function() {
-    wx.redirectTo({
-      url: "../index/index"
+  /* 关闭遮罩 */
+  closeWrap: function() {
+    this.setData({
+      sureBuy: false
     });
   },
-  /* 记录搜索框内容*/
+  //记录
   remSearch: function(e) {
     this.setData({
-      inputVlue: e.detail.value
+      keyword: e.detail.value
     });
   },
-  /* 搜索 */
+  //搜索
   search: function() {
-    console.log('重新提交并加载页面')
+    wx.showLoading({
+      title: "loading..."
+    });
+    var keyword = this.data.keyword;
+    var historys = wx.getStorageSync("historys");
+    if (!historys) {
+      historys = [];
+    }
+    historys.unshift(keyword);
+    wx.setStorage({
+      key: "historys",
+      data: historys
+    });
+    this.setData({
+      featuredComList: [],
+      currentPage: 1,
+      searchFlag: false
+    });
+    this.getGoodsList();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
+  //商品抓取
+  getGoodsList: function() {
+    const url = this.data.host + this.data.getListByKeyword;
+    const that = this;
+    wx.request({
+      url: url,
+      data: {
+        page: that.data.currentPage,
+        kw: that.data.keyword
+      },
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: function(res) {
+        console.log(res);
+        if (res.data.code != -1 && res.data.data.list.length != 0) {
+          const arr1 = that.data.featuredComList;
+          const arr2 = res.data.data.list;
+          arr1.push.apply(arr1, arr2);
+          that.setData({
+            featuredComList: arr1,
+            currentPage: that.data.currentPage + 1
+          });
+        } else {
+          that.setData({
+            searchFlag: true
+          });
+        }
+        wx.hideLoading();
+      },
+      fail: function() {
+        that.setData({
+          featuredComList: []
+        });
+      }
+    });
+  },
+  //获取更多商品
+  onReachBottom: function() {
+    this.getGoodsList();
+  },
+  //添加/取消收藏
+  getCol: function(e) {
+    var favs = wx.getStorageSync("favs");
+    if (!favs) {
+      favs = [];
+    }
+    const data = e.currentTarget;
+    const sku = data.id;
+    const arr2 = [];
+    const col = {
+      sku: sku,
+      pic: data.dataset.pic,
+      title: data.dataset.title,
+      price: data.dataset.price,
+      market_price: data.dataset.marketprice
+    };
+    favs.forEach(ele => {
+      if (sku != ele.sku) {
+        arr2.unshift(ele);
+      }
+    });
+    arr2.unshift(col);
+    wx.setStorage({
+      key: "favs",
+      data: arr2
+    });
+    wx.showToast({
+      title: "收藏成功",
+      icon: "success"
+    });
+  },
+  //是否显示返回顶部
+  onPageScroll: function(e) {
+    if (e.scrollTop >= 500) {
+      this.setData({
+        showTop: true
+      });
+    } else {
+      this.setData({
+        showTop: false
+      });
+    }
+  },
+  //返回顶部
+  toTop: function() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
+    this.setData({
+      showTop: false
+    });
+  },
+  //返回上一页
+  returnIndex: function() {
+    wx.navigateBack();
+  }
 });

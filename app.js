@@ -23,10 +23,12 @@ App({
     host: "https://www.97youmeitao.com/", //主域名
     getcatelist: "api.php/quan.tao/getcatelist", //淘宝分类
     getGoodsList: "api.php/quan.tao/getGoodsList", //淘宝列表
+    getRenqiList: "api.php/quan.tao/getRenqiList", //人气榜
     getCouponUrl: "api.php/quan.tao/getCouponUrl", //淘宝优惠券
     getNineList: "api.php/quan.tao/getNineList", //9.9包邮
     getMiaoList: "api.php/quan.tao/getMiaoList", //秒杀
-    getZhiboList: "api.php/quan.tao/getZhiboList",//直播
+    getZhiboList: "api.php/quan.tao/getZhiboList", //直播
+    getListByKeyword: "api.php/quan.tao/getListByKeyword", //搜索
     favs: [] //添加收藏列表
   }
 });

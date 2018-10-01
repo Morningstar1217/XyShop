@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/search/search",
+    "pages/searchResult/searchResult",
     "pages/99sale/index",
     "pages/fav/fav",
     "pages/quan/quan",
     "pages/tutorial/tutorial",
-    "pages/search/search",
-    "pages/searchResult/searchResult",
     "pages/featured/featured",
     "pages/timeLimit/timeLimit"
   ],
@@ -15,6 +15,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "大白微商城",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance": 200
+    "onReachBottomDistance": 50
   }
 }

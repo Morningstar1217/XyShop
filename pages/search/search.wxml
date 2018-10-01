@@ -8,10 +8,10 @@
   </view>
   <!-- 历史纪录展示区 -->
   <view class="historyShow">
-    <block wx:for="{{history}}" wx:key="id">
+    <block wx:for="{{historys}}" wx:key="id">
       <view class="history">
         <image class="timeIcon" src="/images/timeIcon.png" />
-        <view class="historyName">{{item}}</view>
+        <view class="historyName" bind:tap="tosearch" data-index="{{index}}">{{item}}</view>
         <view class="delete" bind:tap="delete" data-index="{{index}}">x</view>
       </view>
     </block>
@@ -25,7 +25,7 @@
     </view>
     <view class="hotSearchWrap">
       <block wx:for="{{hotSearch}}" wx:key="id">
-        <view class="hotsearch">{{item}}</view>
+        <view class="hotsearch" bind:tap="tohsearch" data-index="{{index}}">{{item}}</view>
       </block>
     </view>
   </view>

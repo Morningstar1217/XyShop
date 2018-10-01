@@ -7,12 +7,9 @@
   </view>
   <!-- 商品类目筛选 -->
   <view class="filterWrap">
-    <!-- <view class="filterType {{typeOpenFlag?'typeOpen':''}}" bind:tap="typeOpen">{{typeTitle}}</view>
-    <view class="filterStatus {{statusOpenFlag?'typeOpen':''}}" bind:tap="statusOpen">
-      {{statusTitle}}
-    </view> -->
-    <input type="text" class="filterSearch" />
-    <view class="filterManager" bind:tap="filterManager">管理</view>
+    <view class="filterManager {{consolePlat&&favs.length!=0?'filterManagered':''}}" bind:tap="filterManager">
+      {{consolePlat&&favs.length!=0?'完成':'管理'}}
+    </view>
     <!-- 分类展示 -->
     <view class="typeOpenList" wx:if="{{typeOpenFlag}}">
       <block wx:for="{{menu}}" wx:key="id">

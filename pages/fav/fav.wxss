@@ -14,59 +14,18 @@
   height: 80rpx;
   line-height: 80rpx;
   font-size: 30rpx;
-  padding: 0 10rpx;
   background: #fff;
 }
 
-.filterType,
-.filterStatus {
-  display: inline-block;
-  position: relative;
-  width: 150rpx;
-}
-
-.filterStatus {
-  margin-left: 40rpx;
-}
-
-.filterType::before,
-.filterStatus::before {
-  position: absolute;
-  top: 35rpx;
-  right: 4rpx;
-  content: "";
-  border-top: 14rpx solid;
-  border-bottom: 0;
-  border-left: 10rpx solid transparent;
-  border-right: 10rpx solid transparent;
-}
-
-.typeOpen {
-  color: #ed654f;
-}
-
-.filterSearch {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 540rpx;
-  height: 50rpx;
-  margin: -2rpx 0 0 20rpx;
-  line-height: 50rpx;
-  vertical-align: middle;
-  font-size: 30rpx;
-  background-image: url("http://pbn1t9k4c.bkt.clouddn.com/search.png");
-  background-size: 30rpx;
-  background-repeat: no-repeat;
-  background-position: right;
-}
-
 .filterManager {
-  display: inline-block;
-  height: 40rpx;
-  line-height: 40rpx;
-  margin-left: 20rpx;
-  padding-left: 25rpx;
-  border-left: 1px solid #333;
+  float: right;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-right: 20rpx;
+  padding-right: 25rpx;
+}
+.filterManagered{
+  color: #d34353;
 }
 
 .typeOpenList,
@@ -179,5 +138,5 @@
   height: 100rpx;
   padding: 50rpx 0;
   line-height: 100rpx;
-  font-size: 40rpx;
+  font-size: 30rpx;
 }

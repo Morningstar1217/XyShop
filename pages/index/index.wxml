@@ -2,9 +2,9 @@
 <view class="container">
   <!-- 顶部查券及搜索 -->
   <view class="header">
-    <navigator class="getCoupon" url="/pages/quan/quan">
+    <!-- <navigator class="getCoupon" url="/pages/quan/quan">
       <image src="/images/coupon.png" class="couponImg" />
-    </navigator>
+    </navigator> -->
     <input type="text" class="search" placeholder="输入商品名称查找" bind:tap="toSearch" />
   </view>
   <!-- 轮播图区域 -->

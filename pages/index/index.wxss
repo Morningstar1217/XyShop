@@ -22,7 +22,7 @@
 
 .search {
   position: absolute;
-  width: 600rpx;
+  width: 90%;
   height: 58rpx;
   top: 50%;
   margin-top: -28rpx;
@@ -30,7 +30,7 @@
   display: inline-block;
   background: #fff;
   border-radius: 30rpx;
-  margin-left: 20rpx;
+  margin-left: 5%;
   font-size: 30rpx;
   background-image: url("http://pbn1t9k4c.bkt.clouddn.com/search.png");
   background-size: 40rpx;

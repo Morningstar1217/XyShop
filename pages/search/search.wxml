@@ -15,7 +15,7 @@
         <view class="delete" bind:tap="delete" data-index="{{index}}">x</view>
       </view>
     </block>
-    <view class="showAllHistory">{{history!=0?'全部搜索记录':'当前记录为空'}}</view>
+    <view class="showAllHistory">{{historys!=0?'全部搜索记录':'当前记录为空'}}</view>
   </view>
   <!-- 热搜 -->
   <view class="hotSearch">

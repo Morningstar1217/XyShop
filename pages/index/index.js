@@ -23,7 +23,7 @@ Page({
     filterCount: 0, //条件筛选
     price_h: true, //价格从高到低
     imgUrls: [
-      "http://pbn1t9k4c.bkt.clouddn.com/weibanner4.jpg",
+      "http://pbn1t9k4c.bkt.clouddn.com/weibanner1.jpg",
       "http://pbn1t9k4c.bkt.clouddn.com/weibanner2.jpg",
       "http://pbn1t9k4c.bkt.clouddn.com/weibanner3.jpg",
       "http://pbn1t9k4c.bkt.clouddn.com/weibanner4.jpg"

@@ -2,7 +2,7 @@
 <view class="container">
   <!-- 顶部推荐 -->
   <view class="headerAd">
-    <navigator url="../featured/featured">
+    <navigator url="../featured/featured" hover-class="navigator-hover">
       <image class="today" src="/images/right-1.png" />
     </navigator>
     <navigator url="/pages/timeLimit/timeLimit">

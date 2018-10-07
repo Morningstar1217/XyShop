@@ -11,3 +11,7 @@ page {
   padding-bottom: 100rpx;
   overflow: hidden;
 }
+
+.navigator-hover {
+  background: #fff;
+}

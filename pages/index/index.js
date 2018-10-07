@@ -21,7 +21,13 @@ Page({
     favPage: false, //是否是管理收藏页面
     showTop: false, //返回顶部按钮显示隐藏
     filterCount: 0, //条件筛选
-    price_h: true //价格从高到低
+    price_h: true, //价格从高到低
+    imgUrls: [
+      "http://pbn1t9k4c.bkt.clouddn.com/weibanner4.jpg",
+      "http://pbn1t9k4c.bkt.clouddn.com/weibanner2.jpg",
+      "http://pbn1t9k4c.bkt.clouddn.com/weibanner3.jpg",
+      "http://pbn1t9k4c.bkt.clouddn.com/weibanner4.jpg"
+    ] //轮播图
   },
   onLoad: function(options) {
     this.getGoodsList(); //商品

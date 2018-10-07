@@ -54,11 +54,16 @@
   width: 50rpx;
   height: 50rpx;
   vertical-align: middle;
+  margin-top:-55rpx;
 }
 
 .historyName {
+  width: 520rpx;
   font-size: 28rpx;
   margin-left: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .delete {
@@ -114,4 +119,3 @@
   line-height: 40rpx;
   padding: 30rpx 0;
 }
-
